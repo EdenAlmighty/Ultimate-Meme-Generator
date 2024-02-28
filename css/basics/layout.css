@@ -10,9 +10,22 @@
 /* GALLERY LAYOUT */
 
 .gallery-container{
-    height: 80vh;
+    height: 10vh;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     row-gap: 10px;
     gap: 1em;
     padding: .5em;
+}
+
+/* MEME EDITOR LAYOUT */
+
+/* .canvas-container{
+    width: 80vw;
+    background-color: rgb(244, 244, 244);
+    border: 1px solid lightgray;
+    margin: 10px auto;
+} */
+canvas {
+    display: block;
+    background-color: white;
 }

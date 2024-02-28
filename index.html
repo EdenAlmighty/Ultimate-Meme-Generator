@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Ultimate MEME Gen</title>
 </head>
-<body>
+<body onload="onInit()">
     <main class="main-layout grid">
         <header class="main-header grid align-center space-between flow-column">
             <h1>Ultimate MEME Gen</h1>
@@ -18,17 +18,18 @@
         </header>
         <div class="main-gallery">
             <h2>Gallery</h2>
-            <div class="gallery-container grid">
-                <img src="img\1.jpg" alt="" srcset="">
-                <img src="img\2.jpg" alt="" srcset="">
-                <img src="img\3.jpg" alt="" srcset="">
-                <img src="img\4.jpg" alt="" srcset="">    
-            </div>
+            <section class="gallery-container grid">
+                <!-- <img src="img\1.jpg" onclick="onSelectImg(this)" alt="">
+                <img src="img\2.jpg" onclick="onSelectImg(this)" alt="">
+                <img src="img\3.jpg" onclick="onSelectImg(this)" alt="">
+                <img src="img\4.jpg" onclick="onSelectImg(this)" alt="">     -->
+            </section>
         </div>
             
-        <div class="main-editor hidden">
+        <div class="main-editor ">
             <h2>MEME Editor</h2>
             <div class="editor-container">
+                <input oninput="onSetLineTxt(this)" type="text">
                 <div class="canvas-container">
                     <canvas height="400px" width="400px"></canvas>
                 </div>
@@ -42,6 +43,7 @@
     
     
 
+    <script src="js/services/utils.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
