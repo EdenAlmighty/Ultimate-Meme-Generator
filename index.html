@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Ultimate MEME Gen</title>
+</head>
+<body>
+    <main class="main-layout grid">
+        <header class="main-header grid align-center space-between flow-column">
+            <h1>Ultimate MEME Gen</h1>
+            <nav class="main-nav">
+                <button>Gallery</button>
+                <button>Saved MEMES</button>
+            </nav>
+
+        </header>
+        <div class="main-gallery">
+            <h2>Gallery</h2>
+            <div class="gallery-container grid">
+                <img src="img\1.jpg" alt="" srcset="">
+                <img src="img\2.jpg" alt="" srcset="">
+                <img src="img\3.jpg" alt="" srcset="">
+                <img src="img\4.jpg" alt="" srcset="">    
+            </div>
+        </div>
+            
+        <div class="main-editor hidden">
+            <h2>MEME Editor</h2>
+            <div class="editor-container">
+                <div class="canvas-container">
+                    <canvas height="400px" width="400px"></canvas>
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+    
+    
+    
+
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/gallery.controller.js"></script>
+    <script src="js/meme.controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+
+/* MAIN LAYOUT */
+
+.main-layout {
+    grid-template-rows: 1fr 2fr 1fr;
+    max-height: 100vh;
+    padding: 1em;
+}
+
+/* GALLERY LAYOUT */
+
+.gallery-container{
+    height: 80vh;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    row-gap: 10px;
+    gap: 1em;
+    padding: .5em;
+}
