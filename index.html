@@ -33,9 +33,17 @@
                 <div class="canvas-container">
                     <canvas height="400px" width="400px"></canvas>
                 </div>
-                <div class="inputs">
-                    <a href="#" class="btn" onclick="downloadImg(this)" download="my-img">Download MEME</a>
-                    <button class="btn" onclick="onUploadImg()">Upload to Facebook</button>
+                <div class="controls-container">
+                    <div class=" color-picker btn">
+                        <input oninput="onChangeLineColor(this.value)" type="color" name="color-picker" id="color-picker">
+                    </div>
+                    <button class="btn grow" onclick="onIncreaseLineSize()">+</button>
+                    <button class="btn shrink" onclick="onDecreaseLineSize()">-</button>
+
+                    <div class="inputs">
+                        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img">Download MEME</a>
+                        <button class="btn" onclick="onUploadImg()">Upload to Facebook</button>
+                    </div>
                 </div>
             
             </div>

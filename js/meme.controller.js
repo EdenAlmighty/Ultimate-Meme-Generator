@@ -23,7 +23,7 @@ function onInit() {
 // }
 
 function renderMeme() {
-// debugger
+    // debugger
     // var selectedLine = currMeme.lines.txt
     // onGetMeme()
     const meme = onGetMeme()
@@ -48,22 +48,35 @@ function renderMeme() {
 function renderText(line) {
     // gCtx.strokeStyle = line.color
     gCtx.fillStyle = line.color
-    
+
     // gCtx.fillText(`${txt}`)
     console.log(line.size);
     gCtx.font = line.size + 'px Arial'
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
     gCtx.fillText(line.txt, 200, 200)
-    
 
+}
 
+function onIncreaseLineSize() {
+    increaseLineSize()
+    renderMeme()
+}
+
+function onDecreaseLineSize(){
+    decreaseLineSize()
+    renderMeme()
+}
+
+function onChangeLineColor(color) {
+    changeLineColor(color)
+    // console.log(color);
 }
 
 function onSelectImg(elImg, imgUrl) {
     setImg(elImg, imgUrl)
     renderMeme()
- 
+
 }
 
 function coverCanvasWithImg(elImg) {
@@ -80,7 +93,7 @@ function resizeCanvas() {
 }
 
 function onGetMeme() {
-     return getMeme()
+    return getMeme()
     //  console.log(gCurrMeme);
 
 }

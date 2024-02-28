@@ -54,12 +54,29 @@ function getImgs() {
     return gImgs
 }
 
+function increaseLineSize() {
+    gMeme.lines[gMeme.selectedLineIdx].size += 1
+}
+
+function decreaseLineSize(){
+    if (gMeme.lines[gMeme.selectedLineIdx].size <= 0) {
+        gMeme.lines[gMeme.selectedLineIdx].size += 1
+    }
+    gMeme.lines[gMeme.selectedLineIdx].size -= 1
+
+
+}
+function changeLineColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color
+    renderMeme()
+}
+
 // function getSelectedLine() {
 //     return gMeme.lines[gMeme.selectedLineIdx]
 // }
 
 function setLineText(newTxt) {
-        gMeme.lines[gMeme.selectedLineIdx].txt = newTxt
+    gMeme.lines[gMeme.selectedLineIdx].txt = newTxt
     console.log(newTxt);
 
 }
