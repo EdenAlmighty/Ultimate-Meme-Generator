@@ -33,6 +33,11 @@
                 <div class="canvas-container">
                     <canvas height="400px" width="400px"></canvas>
                 </div>
+                <div class="inputs">
+                    <a href="#" class="btn" onclick="downloadImg(this)" download="my-img">Download MEME</a>
+                    <button class="btn" onclick="onUploadImg()">Upload to Facebook</button>
+                </div>
+            
             </div>
         </div>
 
@@ -43,6 +48,8 @@
     
     
 
+    <script src="js/services/uploadToFB.js"></script>
+    <script src="js/services/download.js"></script>
     <script src="js/services/utils.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/gallery.controller.js"></script>
