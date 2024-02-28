@@ -6,12 +6,12 @@
 
 function renderGallery(){
     const imgs = getImgs()
-    console.log(imgs);
+    // console.log(imgs);
 
     const galleryHTML  = imgs.map(img => `
         <img id="${img.id}" 
         src="${img.url}" 
-        onclick="onSelectImg(this)" 
+        onclick="onSelectImg(this, '${img.url}')" 
         alt="${img.keywords}">
         `)
 
