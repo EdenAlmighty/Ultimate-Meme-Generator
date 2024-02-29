@@ -26,9 +26,10 @@
             </section>
         </div>
             
-        <div class="main-editor ">
+        <div class="main-editor">
             <h2>MEME Editor</h2>
-            <input oninput="onSetLineTxt(this.value)" type="text">
+            <input id="text-input" oninput="onSetLineTxt(this.value)" type="text">
+            <button onclick="onAddLine()">Add Line</button>
             <div class="editor-container">
                 <div class="canvas-container">
                     <canvas height="400px" width="400px"></canvas>
@@ -39,6 +40,7 @@
                     </div>
                     <button class="btn grow" onclick="onIncreaseLineSize()">+</button>
                     <button class="btn shrink" onclick="onDecreaseLineSize()">-</button>
+                    <button class="btn switch" onclick="onSwitchLine()">$$$</button>
 
                     <div class="inputs">
                         <a href="#" class="btn" onclick="downloadImg(this)" download="my-img">Download MEME</a>

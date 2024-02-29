@@ -2,6 +2,7 @@
 
 let gElCanvas
 let gCtx
+
 // let gCurrMeme
 
 function onInit() {
@@ -23,39 +24,84 @@ function onInit() {
 // }
 
 function renderMeme() {
-    // debugger
-    // var selectedLine = currMeme.lines.txt
-    // onGetMeme()
-    const meme = onGetMeme()
-    console.log(meme);
-    meme.url = `img/${meme.selectedImgId.id}.jpg`
 
+    const meme = onGetMeme()
+    meme.url = `img/${meme.selectedImgId.id}.jpg`
     const { lines } = meme
-    console.log(lines);
-    console.log(lines[0].txt);
+
+
 
     const img = new Image()
     img.src = meme.url
-
-
     img.onload = () => {
         coverCanvasWithImg(img)
-        renderText(lines[0])
+        meme.lines.forEach((line, idx) => {
+            renderText(line)
+            if (idx === meme.selectedLineIdx) {
+                const metrics = gCtx.measureText(line.txt)
+                const width =
+                    Math.abs(metrics.actualBoundingBoxLeft) +
+                    Math.abs(metrics.actualBoundingBoxRight)
+                const height =
+                    Math.abs(metrics.actualBoundingBoxAscent) +
+                    Math.abs(metrics.actualBoundingBoxDescent)
+
+                const bounds = {
+                    top: line.y - metrics.actualBoundingBoxAscent,
+                    right: line.x + metrics.actualBoundingBoxRight,
+                    bottom: line.y + metrics.actualBoundingBoxDescent,
+                    left: line.x - metrics.actualBoundingBoxLeft
+                }
+                gCtx.strokeStyle = 'whitesmoke'
+                gCtx.lineWidth = 2
+                gCtx.strokeRect(bounds.left, bounds.top, width, height)
+            }
+        });
 
     }
+}
+// switchSelectedText()
+function onSwitchLine() {
+    switchLine()
+    renderMeme()
+
 }
 
 function renderText(line) {
     // gCtx.strokeStyle = line.color
-    gCtx.fillStyle = line.color
+    let { x, y, size, txt, color } = line
+    if (!x || !y) x = 400, y = 400
+
+    gCtx.strokeStyle = "red"
+
+    // txt.boundingBox = boundingBox
 
     // gCtx.fillText(`${txt}`)
-    console.log(line.size);
-    gCtx.font = line.size + 'px Arial'
+    // console.log(line.size);
+    gCtx.fillStyle = color
+    gCtx.font = size + 'px Arial'
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
-    gCtx.fillText(line.txt, 200, 200)
+    // gCtx.fillText(gCtx.measureText(txt.width), x, y)
+    gCtx.fillText(txt, x, y)
+    drawText(line)
+}
 
+function drawText(line) {
+    const { x, y, size, txt, color } = line
+
+    gCtx.fillStyle = color
+    gCtx.font = size + 'px Arial'
+    gCtx.textAlign = 'center'
+    gCtx.textBaseline = 'middle'
+    gCtx.fillText(txt, x, y)
+}
+
+function onAddLine() {
+    addLine()
+    renderMeme()
+    const elTextInput = document.getElementById('text-input')
+    elTextInput.value = ''
 }
 
 function onIncreaseLineSize() {
@@ -63,7 +109,7 @@ function onIncreaseLineSize() {
     renderMeme()
 }
 
-function onDecreaseLineSize(){
+function onDecreaseLineSize() {
     decreaseLineSize()
     renderMeme()
 }
@@ -102,20 +148,38 @@ function onSetLineTxt(newTxt) {
     console.log(newTxt);
 
     setLineText(newTxt)
-
-    // console.log(newTxt);
-    // setLineTxt(newTxt)
     renderMeme()
-    // renderText()
 }
-
-
 
 function onGetImgIdx(imgId) {
     return getImgIdx(imgId)
 }
 
+function onGetSelectedLine() {
+    getSelectedLine()
+}
 
 function onGetImgURL(imgId) {
     getImgURL(imgId)
 }
+
+
+function getEvPos(ev) {
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+
+    if (TOUCH_EVENTS.includes(ev.type)) {
+
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        // Calc pos according to the touch screen
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
+}
+
