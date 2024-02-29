@@ -1,0 +1,98 @@
+.btn {
+    border: none;
+    /* background-color: white; */
+    border-radius: 4px;
+    height: 3.125em; 
+    width: 3.125em; 
+    cursor: pointer;
+}
+
+.color-picker {
+    width: 5em;
+    cursor: pointer;
+}
+
+
+.change-font.btn{
+    width: 14.5em;
+}
+
+input[type="color"] {
+    border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+.edit-btn-container .btn{
+    height: 3.75em;
+    width: 3.75em;
+}
+
+.share-container .btn{
+    margin: 1em;
+    width: 13em;
+}
+
+.share{
+    background-color: #4267B2;
+    font-weight: bold;
+    color: white;
+}
+
+.download{
+    background-color: green;
+    font-weight: bold;
+    color: white;
+
+}
+
+
+.hamburger-menu {
+    height: 50px;
+    width: 50px;
+    right: 1em;
+    position: relative;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.ham-bar {
+    width: 70%;
+    height: 4px;
+    background-color: white;
+    border-radius: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.6s, opacity 0.8s, top 0.6s;
+}
+
+.bar-top{
+    top: 25%;
+}
+
+.bar-bottom{
+    top: 75%;
+}
+
+.hamburger-menu.active .bar-top{
+    transform: translate(-50%, -50%) rotate(-315deg);
+    top: 50%;
+}
+
+.hamburger-menu.active .bar-mid{
+    transform: translate(-50%, -50%) rotate(-315deg);
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar-bottom{
+    transform: translate(-50%, -50%) rotate(315deg);
+    top: 50%;
+}

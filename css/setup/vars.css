@@ -1,0 +1,12 @@
+:root{
+    /* --primary1: #22252C */
+    --primary-base: #ffffff;
+    --primary-1: #292929;
+    --primary-text: #4F4E4E;
+    --secondary-text: #606060;
+    --primary-2: #58C93A;
+    
+    --bar-width: 60px
+    --bar-height: 8px
+    --hamburger-gap: 6px
+}

@@ -10,6 +10,20 @@ const gImgs = [
     { id: 2, url: 'img/2.jpg', keywords: ['cute', 'puppy'] },
     { id: 3, url: 'img/3.jpg', keywords: ['cute', 'puppy'] },
     { id: 4, url: 'img/4.jpg', keywords: ['cute', 'cat'] },
+    { id: 5, url: 'img/5.jpg', keywords: ['cute', 'cat'] },
+    { id: 6, url: 'img/6.jpg', keywords: ['cute', 'cat'] },
+    { id: 7, url: 'img/7.jpg', keywords: ['cute', 'cat'] },
+    { id: 8, url: 'img/8.jpg', keywords: ['cute', 'cat'] },
+    { id: 9, url: 'img/9.jpg', keywords: ['cute', 'cat'] },
+    { id: 10, url: 'img/10.jpg', keywords: ['cute', 'cat'] },
+    { id: 11, url: 'img/11.jpg', keywords: ['cute', 'cat'] },
+    { id: 12, url: 'img/12.jpg', keywords: ['cute', 'cat'] },
+    { id: 13, url: 'img/13.jpg', keywords: ['cute', 'cat'] },
+    { id: 14, url: 'img/14.jpg', keywords: ['cute', 'cat'] },
+    { id: 15, url: 'img/15.jpg', keywords: ['cute', 'cat'] },
+    { id: 16, url: 'img/16.jpg', keywords: ['cute', 'cat'] },
+    { id: 17, url: 'img/17.jpg', keywords: ['cute', 'cat'] },
+    { id: 18, url: 'img/18.jpg', keywords: ['cute', 'cat'] },
 
 ]
 
@@ -23,8 +37,8 @@ var gMeme = {
             txt: 'I sometimes eat Falafel',
             size: 20,
             color: 'red',
-            x: 200,
-            y: 200,
+            x: 100,
+            y: 100,
             width: 0,
             height: 0
         },
@@ -32,8 +46,8 @@ var gMeme = {
             txt: 'Yossi\'s house',
             size: 50,
             color: 'blue',
-            x: 300,
-            y: 300,
+            x: 150,
+            y: 150,
             width: 0,
             height: 0
         }
@@ -57,6 +71,8 @@ function addLine() {
     console.log(gMeme.lines[gMeme.selectedLineIdx]);
     // console.log(txt, size, color);
 }
+
+
 
 
 function switchLine() {

@@ -6,3 +6,15 @@
 @import url("basics/base.css");
 @import url("basics/helpers.css");
 @import url("basics/layout.css");
+
+
+/* SETUP */
+@import url("setup/vars.css");
+@import url("setup/mq.css");
+
+
+/* COMPONENTS */
+@import url("components/buttons.css");
+@import url("components/editor.css");
+@import url("components/gallery.css");
+@import url("components/main-header.css");

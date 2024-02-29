@@ -110,6 +110,7 @@ function checkClick(ev) {
 //             y <= line.boundingBox.top + line.boundingBox.height
 //     })
 // }
+
 function renderMeme() {
     gCtx.save()
     // console.log(gCtx);
@@ -213,8 +214,13 @@ function onChangeLineColor(color) {
 }
 
 function onSelectImg(elImg, imgUrl) {
+    document.getElementById("main-gallery").classList.add('hidden')
+    document.getElementById("main-editor").classList.remove('hidden')
+
+
     setImg(elImg, imgUrl)
     renderMeme()
+    resizeCanvas()
 
 }
 

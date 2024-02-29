@@ -1,62 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
     <title>Ultimate MEME Gen</title>
 </head>
+
 <body onload="onInit()">
-    <main class="main-layout grid">
-        <header class="main-header grid align-center space-between flow-column">
-            <h1>Ultimate MEME Gen</h1>
-            <nav class="main-nav">
-                <button>Gallery</button>
-                <button>Saved MEMES</button>
-            </nav>
+    <main class="main-layout" >
+        <div class="main-screen" onclick="toggleMenu()"></div>
+
+        <header class="main-header full main-layout">
+            <div class="header-container flex align-center space-between ">
+                <div onclick="switchToGallery()" class="logo">Ultimate MEME Generator</div>
+
+                <div class="hamburger-menu" onclick="toggleMenu()" type="button">
+                    <div class="ham-bar bar-top"></div>
+                    <div class="ham-bar bar-mid"></div>
+                    <div class="ham-bar bar-bottom"></div>
+                </div>
+
+                <nav class="main-nav">
+                    <ul class="main-nav-list flex clean-list">
+                        <li><a href="#" class="gallery-nav" onclick="switchToGallery()">Gallery</a></li>
+                        <li><a href="#" class="saved-nav">Saved Memes</a></li>
+                    </ul>
+                </nav>
+                
+            </div>
+
+            <!-- <button class="gallery-nav" onclick="switchToGallery()">Gallery</button> -->
+            <!-- <button class="saved-nav" >Saved MEMES</button> -->
 
         </header>
-        <div class="main-gallery">
+        <div id="main-gallery" class="main-gallery">
             <h2>Gallery</h2>
             <section class="gallery-container grid">
-                <!-- <img src="img\1.jpg" onclick="onSelectImg(this)" alt="">
-                <img src="img\2.jpg" onclick="onSelectImg(this)" alt="">
-                <img src="img\3.jpg" onclick="onSelectImg(this)" alt="">
-                <img src="img\4.jpg" onclick="onSelectImg(this)" alt="">     -->
             </section>
         </div>
-            
-        <div class="main-editor">
-            <h2>MEME Editor</h2>
-            <input id="text-input" oninput="onSetLineTxt(this.value)" type="text">
-            <button onclick="onAddLine()">Add Line</button>
-            <div class="editor-container">
-                <div class="canvas-container">
-                    <canvas height="400px" width="400px"></canvas>
-                </div>
-                <div class="controls-container">
-                    <div class=" color-picker btn">
-                        <input oninput="onChangeLineColor(this.value)" type="color" name="color-picker" id="color-picker">
-                    </div>
-                    <button class="btn grow" onclick="onIncreaseLineSize()">+</button>
-                    <button class="btn shrink" onclick="onDecreaseLineSize()">-</button>
-                    <button class="btn switch" onclick="onSwitchLine()">$$$</button>
 
-                    <div class="inputs">
-                        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img">Download MEME</a>
-                        <button class="btn" onclick="onUploadImg()">Upload to Facebook</button>
+        <div id="main-editor" class="main-editor hidden">
+            <h2>MEME Editor</h2>
+            <div class="editor-layout grid  ">
+                <div class="canvas-container">
+                    <canvas height="540px" width="470px"></canvas>
+                </div>
+                <div class="controls-container flex align-center columns space-around">
+                    <div class="inputs-container align-center columns space-around">
+                        <input class="text-input" id="text-input" oninput="onSetLineTxt(this.value)" type="text"
+                            placeholder="ADD TEXT">
+                    </div>
+                    <div class="edit-btn-container align-center columns space-around">
+                        <button class="btn switch-text" onclick="onSwitchLine()">$$</button>
+                        <button class="btn add-text" onclick="onAddLine()">Add</button>
+                        <button class="btn delete-text" onclick="onDeleteText()">Del</button>
+                    </div>
+
+                    <div class="style-container grid flow-column align-center space-around">
+                        <!-- <div class="top-styles grid flow-column"> -->
+                        <button class="btn grow" onclick="onIncreaseLineSize()">+</button>
+                        <button class="btn shrink" onclick="onDecreaseLineSize()">-</button>
+                        <button class="btn align-left" onclick="onAlignLeft()">L</button>
+                        <button class="btn align-text-center" onclick="onAlignCenter()">C</button>
+                        <button class="btn align-right" onclick="onAlignRight()">R</button>
+
+                        <!-- </div> -->
+                        <!-- <div class="bottom-styles grid flow-column"> -->
+
+                        <select class="btn change-font" name="change-font" onclick="onChangeFont()">
+                            <option value="Arial">Arial</option>
+                            <option value="Arial">Arial</option>
+                            <option value="Arial">Arial</option>
+                        </select>
+                        <button class="btn add-underline" onclick="onUnderLine()">ULine</button>
+                        <button class="btn color-picker"><input oninput="onChangeLineColor(this.value)" type="color"
+                                name="color-picker" id="color-picker"></button>
+                        <!-- </div> -->
+                    </div>
+
+
+                    <div class="share-container ">
+                        <button class="btn share" onclick="onUploadImg()">Upload to Facebook</button>
+                        <button class="btn download"><a href="#" class="btn download" onclick="downloadImg(this)"
+                                download="my-img">Download MEME</a></button>
                     </div>
                 </div>
-            
+
             </div>
         </div>
 
 
 
     </main>
-    
-    
-    
+
+
+
 
     <script src="js/services/uploadToFB.js"></script>
     <script src="js/services/download.js"></script>
@@ -65,4 +105,5 @@
     <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
 </body>
+
 </html>

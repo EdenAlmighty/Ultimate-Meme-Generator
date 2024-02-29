@@ -18,3 +18,9 @@ function renderGallery(){
     const elGallery = document.querySelector('.gallery-container')
     elGallery.innerHTML = galleryHTML.join('')
 }
+
+function switchToGallery(){
+    document.getElementById("main-gallery").classList.remove('hidden')
+    document.getElementById("main-editor").classList.add('hidden')
+    
+}

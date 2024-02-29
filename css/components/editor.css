@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+}
+
+.controls-container {
+    background-color: rgb(44, 44, 44);
+    border-radius: 2em;
+    padding: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    justify-items: center;
+}
+
+
+.text-input {
+    display: flex;
+    flex-grow: 1;
+    padding: 1em;
+    border-radius: 2em;
+    color: var(--primary1);
+    text-align: center;
+}
+
+
+.style-container {
+    grid-template-areas:
+        "a b c d e"
+        "f f f g h";
+    background-color: rgb(98, 107, 114);
+
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    /* width: 520px; */
+    padding: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.grow{
+    grid-area: a;
+}
+.shrink{
+    grid-area: b;
+}
+.align-left{
+    grid-area: c;
+}
+.align-text-center{
+    grid-area: d;
+}
+.align-right{
+    grid-area: e;
+}
+.change-font{
+    grid-area: f;
+}
+.add-underline{
+    grid-area: g;
+}
+.color-picker{
+    grid-area: h;
+}

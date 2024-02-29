@@ -20,7 +20,7 @@ function addListeners() {
 		//Calc the center of the canvas
 		const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
 
-		renderCanvas()
+		renderMeme()
 	})
 }
 
@@ -59,4 +59,10 @@ function getEvPos(ev) {
 function clearCanvas() {
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open')
+    const hamMenu = document.querySelector('.hamburger-menu')
+    hamMenu.classList.toggle('active')
 }
