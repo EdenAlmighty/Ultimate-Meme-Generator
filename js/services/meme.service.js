@@ -24,14 +24,18 @@ var gMeme = {
             size: 20,
             color: 'red',
             x: 200,
-            y: 200
+            y: 200,
+            width: 0,
+            height: 0
         },
         {
             txt: 'Yossi\'s house',
             size: 50,
             color: 'blue',
             x: 300,
-            y: 300
+            y: 300,
+            width: 0,
+            height: 0
         }
     ]
 }
@@ -52,9 +56,6 @@ function addLine() {
     console.log(gMeme.lines);
     console.log(gMeme.lines[gMeme.selectedLineIdx]);
     // console.log(txt, size, color);
-
-
-
 }
 
 

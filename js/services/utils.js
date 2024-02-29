@@ -11,19 +11,30 @@ function makeId(length = 5) {
 }
 
 const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
+function addListeners() {
+	addMouseListeners()
+	addTouchListeners()
+	//Listen for resize ev
+	window.addEventListener('resize', () => {
+		resizeCanvas()
+		//Calc the center of the canvas
+		const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
 
+		renderCanvas()
+	})
+}
 
 function addMouseListeners() {
-    gElCanvas.addEventListener('mousedown', onDown)
-    gElCanvas.addEventListener('mousemove', onDrag)
-    gElCanvas.addEventListener('mouseup', onEnd)
+    gElCanvas.addEventListener('mousedown', checkClick)
+    // gElCanvas.addEventListener('mousemove', onDrag)
+    // gElCanvas.addEventListener('mouseup', onEnd)
 }
 
 function addTouchListeners() {
 
-    gElCanvas.addEventListener('touchstart', onDown)
-    gElCanvas.addEventListener('touchmove', onDrag)
-    gElCanvas.addEventListener('touchend', onEnd)
+    gElCanvas.addEventListener('touchstart', checkClick)
+    // gElCanvas.addEventListener('touchmove', onDrag)
+    // gElCanvas.addEventListener('touchend', onEnd)
 }
 
 function getEvPos(ev) {
