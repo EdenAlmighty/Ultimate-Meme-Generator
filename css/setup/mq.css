@@ -3,7 +3,18 @@
 /* MOBILE */
 
 @media (width <= 920px) {
-    
+    .main-layout {
+        display: flex;
+        flex-direction: column;
+        /* display: grid; */
+        /* grid-template-columns: minmax(20px, 1fr) minmax(auto, 980px) minmax(20px, 1fr); */
+        margin-left: auto;
+        margin-right: auto;
+        margin: 0;
+        margin-bottom: 2em;
+        
+    }
+
     .main-header .logo {
         font-size: 1.5em;
         margin-left: 1em;
@@ -95,6 +106,14 @@
         padding: .5em;
     }
 
+    .editor-layout{
+
+        /* margin-left: auto;
+        margin-right: auto; */
+        max-height: 100vh;
+        padding: 1em;
+    }
+
 
 }
 
@@ -104,6 +123,20 @@
         display: none;
 
     }
+
+    .editor-layout{
+        grid-template-columns: 
+        minmax(5em, 1fr) 
+        minmax(200px, 3fr) 
+        minmax(2em, 5em) 
+        minmax(200px, 3fr) 
+        minmax(5em, 1fr);
+        margin-left: auto;
+        margin-right: auto;
+        max-height: 100vh;
+        padding: 1em;
+    }
+
     .main-nav a {
         display: flex;
         align-items: center;
