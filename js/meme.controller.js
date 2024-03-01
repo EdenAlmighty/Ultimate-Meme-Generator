@@ -6,14 +6,7 @@ let gStartPos
 let meme
 let gLine = {}
 
-function createLine(pos) {
-    gLine = {
-        pos,
-        size: 60,
-        color: 'blue',
-        isDrag: false,
-    }
-}
+
 function getLine() {
     return gLine
 }
@@ -57,10 +50,10 @@ function checkClick(ev) {
         const centerX = textWidth / 2
         const centerY = textHeight / 2
 
-        const left = line.x - centerX
-        const right = line.x + centerX
-        const top = line.y - centerY
-        const bottom = line.y + centerY
+        const left = line.x - (centerX - 2)
+        const right = line.x + (centerX + 2)
+        const top = line.y - (centerY + 10)
+        const bottom = line.y + (centerY + 2)
 
 
 
@@ -145,6 +138,21 @@ function renderMeme() {
     }
 }
 
+function onAlignLeft(){
+    alignLeft()
+    renderMeme()
+}
+
+function onAlignCenter(){
+    alignCenter()
+    renderMeme()
+}
+
+function onAlignRight(){
+    alignRight()
+    renderMeme()
+}
+
 function onDeleteLine() {
     deleteLine()
     renderMeme()
@@ -157,28 +165,30 @@ function onSwitchLine() {
 }
 
 function renderText(line) {
-    let { x, y, size, txt, color } = line
-    if (!x || !y) x = 400, y = 400
-
-    gCtx.strokeStyle = "red"
-    gCtx.fillStyle = color
-    gCtx.font = size + 'px Arial'
-    gCtx.textAlign = 'center'
-    gCtx.textBaseline = 'middle'
-    gCtx.fillText(txt, x, y)
-    drawText(line)
-}
-
-function drawText(line) {
     gCtx.beginPath()
-    const { x, y, size, txt, color } = line
 
+    const { x, y, size, txt, color, align } = line
+    // if (!x || !y) x = 100, y = 100
+    console.log(line);
+    // gCtx.strokeStyle = "red"
     gCtx.fillStyle = color
     gCtx.font = size + 'px Arial'
-    gCtx.textAlign = 'center'
+    gCtx.textAlign = `${align}`
     gCtx.textBaseline = 'middle'
     gCtx.fillText(txt, x, y)
+    // drawText(line)
 }
+
+// function drawText(line) {
+//     gCtx.beginPath()
+//     // const { x, y, size, txt, color } = line
+
+//     // gCtx.fillStyle = color
+//     // gCtx.font = size + 'px Arial'
+//     // gCtx.textAlign = 'center'
+//     // gCtx.textBaseline = 'middle'
+//     gCtx.fillText(txt, x, y)
+// }
 
 function onAddLine() {
     addLine()

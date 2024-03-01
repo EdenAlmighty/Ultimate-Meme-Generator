@@ -32,11 +32,12 @@ var gMeme = {
     lines: [
         {
             txt: 'I sometimes eat Falafel',
-            size: 20,
+            size: 30,
             color: 'red',
             x: 100,
             y: 100,
-            isDrag: false
+            isDrag: false,
+            align: 'center'
         },
         {
             txt: 'Yossi\'s house',
@@ -44,7 +45,8 @@ var gMeme = {
             color: 'blue',
             x: 150,
             y: 150,
-            isDrag: false
+            isDrag: false,
+            align: 'center'
         }
     ]
 }
@@ -65,9 +67,19 @@ function addLine() {
     if (gMeme.selectedLineIdx <= 1) gMeme.selectedLineIdx = 2
     else gMeme.selectedLineIdx++
     console.log(gMeme.lines);
+    renderText()
 }
 
-
+// TEXT IS MEASURED FROM THE CENTER. TO ALIGN LEFT I NEED TO SET RIGHT
+function alignLeft(){
+    gMeme.lines[gMeme.selectedLineIdx].align = 'right'
+}
+function alignCenter(){
+    gMeme.lines[gMeme.selectedLineIdx].align = 'center'
+}
+function alignRight(){
+    gMeme.lines[gMeme.selectedLineIdx].align = 'left'
+}
 
 function setLineDrag(isDrag) {
     gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
@@ -77,7 +89,6 @@ function moveText(dx, dy) {
 	gMeme.lines[gMeme.selectedLineIdx].x += dx
 	gMeme.lines[gMeme.selectedLineIdx].y += dy
 }
-
 
 function switchLine() {
     if (gMeme.selectedLineIdx === gMeme.lines.length - 1) {
