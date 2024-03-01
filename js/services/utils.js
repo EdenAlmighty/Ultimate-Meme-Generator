@@ -19,22 +19,21 @@ function addListeners() {
 		resizeCanvas()
 		//Calc the center of the canvas
 		const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
-
 		renderMeme()
 	})
 }
 
 function addMouseListeners() {
     gElCanvas.addEventListener('mousedown', checkClick)
-    // gElCanvas.addEventListener('mousemove', onDrag)
-    // gElCanvas.addEventListener('mouseup', onEnd)
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
 }
 
 function addTouchListeners() {
 
     gElCanvas.addEventListener('touchstart', checkClick)
-    // gElCanvas.addEventListener('touchmove', onDrag)
-    // gElCanvas.addEventListener('touchend', onEnd)
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchend', onUp)
 }
 
 function getEvPos(ev) {
@@ -47,7 +46,6 @@ function getEvPos(ev) {
 
         ev.preventDefault()
         ev = ev.changedTouches[0]
-        // Calc pos according to the touch screen
         pos = {
             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,

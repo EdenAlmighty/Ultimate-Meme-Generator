@@ -24,12 +24,9 @@ const gImgs = [
     { id: 16, url: 'img/16.jpg', keywords: ['cute', 'cat'] },
     { id: 17, url: 'img/17.jpg', keywords: ['cute', 'cat'] },
     { id: 18, url: 'img/18.jpg', keywords: ['cute', 'cat'] },
-
 ]
 
 var gMeme = {
-
-    // selectedImgUrl: 1,
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
@@ -39,8 +36,7 @@ var gMeme = {
             color: 'red',
             x: 100,
             y: 100,
-            width: 0,
-            height: 0
+            isDrag: false
         },
         {
             txt: 'Yossi\'s house',
@@ -48,35 +44,42 @@ var gMeme = {
             color: 'blue',
             x: 150,
             y: 150,
-            width: 0,
-            height: 0
+            isDrag: false
         }
     ]
 }
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
+function deleteLine() {
+    gMeme.lines = gMeme.lines.filter((line, idx) => idx !== gMeme.selectedLineIdx)
+    if (gMeme.selectedLineIdx != 0) gMeme.selectedLineIdx--
+}
 
 function addLine() {
     var txt = gMeme.lines[gMeme.selectedLineIdx].txt
     var size = gMeme.lines[gMeme.selectedLineIdx].size
     var color = gMeme.lines[gMeme.selectedLineIdx].color
 
-    // var newLine = [{txt: txt, size: size, color: color}]    
-    gMeme.lines.push({ txt: txt, size: size, color: color })
-    // gMeme.lines[gMeme.selectedLineIdx]
+    gMeme.lines.push({ txt: txt, size: size, color: color, x: 50, y: 50 })
     if (gMeme.selectedLineIdx <= 1) gMeme.selectedLineIdx = 2
     else gMeme.selectedLineIdx++
     console.log(gMeme.lines);
-    console.log(gMeme.lines[gMeme.selectedLineIdx]);
-    // console.log(txt, size, color);
 }
 
 
 
+function setLineDrag(isDrag) {
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
+}
+
+function moveText(dx, dy) {
+	gMeme.lines[gMeme.selectedLineIdx].x += dx
+	gMeme.lines[gMeme.selectedLineIdx].y += dy
+}
+
 
 function switchLine() {
-
     if (gMeme.selectedLineIdx === gMeme.lines.length - 1) {
         gMeme.selectedLineIdx = 0
     } else {
@@ -96,7 +99,6 @@ function getImgIdx(imgId) {
     return gImgs.findIndex(img => img.id === imgId)
 }
 
-// console.log(gMeme);
 function getMeme() {
     return gMeme
 }
@@ -115,6 +117,7 @@ function decreaseLineSize() {
     }
     gMeme.lines[gMeme.selectedLineIdx].size -= 1
 }
+
 function changeLineColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color
     renderMeme()
@@ -125,7 +128,6 @@ function getSelectedLine() {
 }
 
 function setLineText(newTxt) {
-    gMeme.lines[gMeme.selectedLineIdx].txt = newTxt
+    gMeme.lines[gMeme.selectedLineIdx].txt += newTxt
     console.log(newTxt);
-
 }
