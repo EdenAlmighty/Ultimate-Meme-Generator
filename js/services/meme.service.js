@@ -33,25 +33,34 @@ var gMeme = {
         {
             txt: 'I sometimes eat Falafel',
             size: 30,
-            color: 'red',
+            color: 'white',
+            stroke: 'black',
             x: 100,
             y: 100,
             isDrag: false,
-            align: 'center'
+            align: 'center',
+            font: 'impact'
         },
         {
             txt: 'Yossi\'s house',
             size: 50,
-            color: 'blue',
+            color: 'white',
+            stroke: 'black',
             x: 150,
             y: 150,
             isDrag: false,
-            align: 'center'
+            align: 'center',
+            font: 'impact'
         }
     ]
 }
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+
+function changeFont(ev){
+    const line = getSelectedLine()
+    line.font = ev
+}
 
 function deleteLine() {
     gMeme.lines = gMeme.lines.filter((line, idx) => idx !== gMeme.selectedLineIdx)
@@ -62,8 +71,9 @@ function addLine() {
     var txt = gMeme.lines[gMeme.selectedLineIdx].txt
     var size = gMeme.lines[gMeme.selectedLineIdx].size
     var color = gMeme.lines[gMeme.selectedLineIdx].color
+    var font = gMeme.lines[gMeme.selectedLineIdx].font
 
-    gMeme.lines.push({ txt: txt, size: size, color: color, x: 50, y: 50 })
+    gMeme.lines.push({ txt: txt, size: size, color: color, x: 50, y: 50, font })
     if (gMeme.selectedLineIdx <= 1) gMeme.selectedLineIdx = 2
     else gMeme.selectedLineIdx++
     console.log(gMeme.lines);
@@ -139,6 +149,8 @@ function getSelectedLine() {
 }
 
 function setLineText(newTxt) {
-    gMeme.lines[gMeme.selectedLineIdx].txt += newTxt
+    gMeme.lines[gMeme.selectedLineIdx].txt = newTxt
+    // resizeCanvas()
+    // console.log(newTxt);
     console.log(newTxt);
 }

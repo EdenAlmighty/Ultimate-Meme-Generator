@@ -21,6 +21,7 @@ function addListeners() {
 		const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
 		renderMeme()
 	})
+    document.addEventListener('keydown', onMoveArrows)
 }
 
 function addMouseListeners() {

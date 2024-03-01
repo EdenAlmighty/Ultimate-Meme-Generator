@@ -64,13 +64,18 @@ function checkClick(ev) {
             gStartPos.y <= bottom) {
             meme.selectedLineIdx = idx
             lineSelected = true
+            renderText(line)
+            renderMeme()
             console.log(line);
             console.log('selectedLineIdx', meme.selectedLineIdx, ' gStartPos.x', gStartPos.x, ' gStartPos.y', gStartPos.y);
         }
     })
 
     if (lineSelected) {
-
+        // console.log(meme.lines[meme.selectedLineIdx].txt);
+        const elInput = document.querySelector('.text-input')
+        elInput.value = meme.lines[meme.selectedLineIdx].txt
+        elInput.focus()
         document.body.style.cursor = 'grabbing'
         setLineDrag(lineSelected)
     }
@@ -87,7 +92,7 @@ function onMove(ev) {
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
     moveText(dx, dy, gElCanvas)
-    console.log(gStartPos);
+    // console.log(gStartPos);
 
     gStartPos = pos
 
@@ -111,6 +116,7 @@ function renderMeme() {
     img.onload = () => {
         coverCanvasWithImg(img)
         meme.lines.forEach((line, idx) => {
+            console.log(line);
             renderText(line)
             if (idx === meme.selectedLineIdx) {
                 const metrics = gCtx.measureText(line.txt)
@@ -135,20 +141,39 @@ function renderMeme() {
             }
         });
 
+
     }
 }
 
-function onAlignLeft(){
+function onChangeFont(ev){
+    changeFont(ev)
+    renderMeme()
+}
+
+function onMoveArrows(ev) {
+    const line = getSelectedLine()
+    if (ev.key === 'ArrowUp' || ev.key === 'ArrowDown') {
+        const moveDirY = ev.key === 'ArrowUp' ? -1 : 1
+        line.y += moveDirY * 5
+
+    } else if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') {
+        const moveDirX = ev.key === 'ArrowLeft' ? -1 : 1
+        line.x += moveDirX * 5
+    }
+    renderMeme()
+}
+
+function onAlignLeft() {
     alignLeft()
     renderMeme()
 }
 
-function onAlignCenter(){
+function onAlignCenter() {
     alignCenter()
     renderMeme()
 }
 
-function onAlignRight(){
+function onAlignRight() {
     alignRight()
     renderMeme()
 }
@@ -166,37 +191,41 @@ function onSwitchLine() {
 
 function renderText(line) {
     gCtx.beginPath()
-
-    const { x, y, size, txt, color, align } = line
+    let { size, txt, color, align, x, y, font, stroke } = line
     // if (!x || !y) x = 100, y = 100
+    // const { x, y, size, txt, color, align } = line
     console.log(line);
     // gCtx.strokeStyle = "red"
     gCtx.fillStyle = color
-    gCtx.font = size + 'px Arial'
+    gCtx.strokeStyle = `${stroke}`
+    gCtx.font = size + `px ${font}`
     gCtx.textAlign = `${align}`
     gCtx.textBaseline = 'middle'
     gCtx.fillText(txt, x, y)
+    gCtx.strokeText(txt, x, y)
     // drawText(line)
 }
 
 // function drawText(line) {
 //     gCtx.beginPath()
-//     // const { x, y, size, txt, color } = line
+//     const { x, y, size, txt, color } = line
 
-//     // gCtx.fillStyle = color
-//     // gCtx.font = size + 'px Arial'
-//     // gCtx.textAlign = 'center'
-//     // gCtx.textBaseline = 'middle'
+//     gCtx.fillStyle = color
+//     gCtx.font = size + 'px Arial'
+//     gCtx.textAlign = 'center'
+//     gCtx.textBaseline = 'middle'
 //     gCtx.fillText(txt, x, y)
 // }
 
 function onAddLine() {
     addLine()
     renderMeme()
-    const elTextInput = document.getElementById('text-input')
-    elTextInput.focus()
-    elTextInput.value = ''
+    // const elTextInput = document.getElementById('text-input')
+    // elTextInput.focus()
+    // elTextInput.value = ''
 }
+
+
 
 function onIncreaseLineSize() {
     increaseLineSize()
@@ -229,7 +258,6 @@ function coverCanvasWithImg(elImg) {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.clientWidth
-
 }
 
 function onGetMeme() {
@@ -238,7 +266,9 @@ function onGetMeme() {
 
 function onSetLineTxt(newTxt) {
     setLineText(newTxt)
+
     renderMeme()
+    // renderText()
 }
 
 function onGetImgIdx(imgId) {
