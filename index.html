@@ -27,7 +27,7 @@
                 <nav class="main-nav">
                     <ul class="main-nav-list flex clean-list" onclick="toggleMenu()">
                         <li><a href="#" class="gallery-nav" onclick="switchToGallery()">Gallery</a></li>
-                        <li><a href="#" class="saved-nav">Saved Memes</a></li>
+                        <li><a href="#" class="saved-nav" onclick="switchToSaved()">Saved Memes</a></li>
                     </ul>
                 </nav>
 
@@ -40,6 +40,11 @@
             <button class="btn" onclick="onGetRandomMeme()">I'm Flexable!</button>
             <section class="gallery-container grid">
             </section>
+        </div>
+
+        <div id="main-saved" class="main-saved hidden">
+            <h2>Saved Memes</h2>
+            <section class="saved-container grid"></section>
         </div>
 
         <div id="main-editor" class="main-editor hidden">

@@ -6,7 +6,6 @@
 
 function renderGallery(){
     const imgs = getImgs()
-    // console.log(imgs);
 
     const galleryHTML  = imgs.map(img => `
         <img id="${img.id}" 
@@ -19,12 +18,32 @@ function renderGallery(){
     elGallery.innerHTML = galleryHTML.join('')
 }
 
+function renderSavedMemes(){
+    const imgs = getImgs()
+
+    const savedHTML  = imgs.map(img => `
+        <img id="${img.id}" 
+        src="${img.url}" 
+        onclick="onSelectImg(this, '${img.url}')" 
+        alt="${img.keywords}">
+        `)
+
+    const elSavedMemes = document.querySelector('.saved-container')
+    elSavedMemes.innerHTML = savedHTML.join('')
+}
+
 function switchToGallery(){
     document.getElementById("main-gallery").classList.remove('hidden')
     document.getElementById("main-editor").classList.add('hidden')
-    
+    document.getElementById("main-saved").classList.add('hidden')
 }
 
+function switchToSaved(){
+    document.getElementById("main-editor").classList.add('hidden')
+    document.getElementById("main-gallery").classList.add('hidden')
+    document.getElementById("main-saved").classList.remove('hidden')
+    renderSavedMemes()
+}
 // function onUploadUserImg()
 
 //UPLOAD IMG FROM USER
@@ -52,9 +71,10 @@ function loadImageFromInput(ev, onImageReady) {
             // gImgs.push(newImg)
             // console.log(newImg);
         
-        // console.log(img);
-    }
-    reader.readAsDataURL(ev.target.files[0])
+            // console.log(img);
+        }
+        reader.readAsDataURL(ev.target.files[0])
+        // coverCanvasWithImg(img.dataURL)
     
 }
 
@@ -68,6 +88,5 @@ function addUserImg(img) {
     gImgs.push(newImg)
     // onSelectImg()
     renderGallery()
-    coverCanvasWithImg(img)
     
 }

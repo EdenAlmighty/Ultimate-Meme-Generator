@@ -8,33 +8,33 @@ var gMeme = loadFromStorage(MEME_DB) || _createMeme()
 // _createMeme()
 
 var gImgs = [
-    { id: 1, url: 'img/1.jpg', keywords: ['funny', 'men'] },
-    { id: 2, url: 'img/2.jpg', keywords: ['cute', 'puppy'] },
-    { id: 3, url: 'img/3.jpg', keywords: ['cute', 'puppy'] },
-    { id: 4, url: 'img/4.jpg', keywords: ['cute', 'cat'] },
-    { id: 5, url: 'img/5.jpg', keywords: ['cute', 'cat'] },
-    { id: 6, url: 'img/6.jpg', keywords: ['cute', 'cat'] },
-    { id: 7, url: 'img/7.jpg', keywords: ['cute', 'cat'] },
-    { id: 8, url: 'img/8.jpg', keywords: ['cute', 'cat'] },
-    { id: 9, url: 'img/9.jpg', keywords: ['cute', 'cat'] },
-    { id: 10, url: 'img/10.jpg', keywords: ['cute', 'cat'] },
-    { id: 11, url: 'img/11.jpg', keywords: ['cute', 'cat'] },
-    { id: 12, url: 'img/12.jpg', keywords: ['cute', 'cat'] },
-    { id: 13, url: 'img/13.jpg', keywords: ['cute', 'cat'] },
-    { id: 14, url: 'img/14.jpg', keywords: ['cute', 'cat'] },
-    { id: 15, url: 'img/15.jpg', keywords: ['cute', 'cat'] },
-    { id: 16, url: 'img/16.jpg', keywords: ['cute', 'cat'] },
-    { id: 17, url: 'img/17.jpg', keywords: ['cute', 'cat'] },
-    { id: 18, url: 'img/18.jpg', keywords: ['cute', 'cat'] },
+    { id: 0, url: 'img/1.jpg', keywords: ['funny', 'men'] },
+    { id: 1, url: 'img/2.jpg', keywords: ['cute', 'puppy'] },
+    { id: 2, url: 'img/3.jpg', keywords: ['cute', 'puppy'] },
+    { id: 3, url: 'img/4.jpg', keywords: ['cute', 'cat'] },
+    { id: 4, url: 'img/5.jpg', keywords: ['cute', 'cat'] },
+    { id: 5, url: 'img/6.jpg', keywords: ['cute', 'cat'] },
+    { id: 6, url: 'img/7.jpg', keywords: ['cute', 'cat'] },
+    { id: 7, url: 'img/8.jpg', keywords: ['cute', 'cat'] },
+    { id: 8, url: 'img/9.jpg', keywords: ['cute', 'cat'] },
+    { id: 9, url: 'img/10.jpg', keywords: ['cute', 'cat'] },
+    { id: 10, url: 'img/11.jpg', keywords: ['cute', 'cat'] },
+    { id: 11, url: 'img/12.jpg', keywords: ['cute', 'cat'] },
+    { id: 12, url: 'img/13.jpg', keywords: ['cute', 'cat'] },
+    { id: 13, url: 'img/14.jpg', keywords: ['cute', 'cat'] },
+    { id: 14, url: 'img/15.jpg', keywords: ['cute', 'cat'] },
+    { id: 15, url: 'img/16.jpg', keywords: ['cute', 'cat'] },
+    { id: 16, url: 'img/17.jpg', keywords: ['cute', 'cat'] },
+    { id: 17, url: 'img/18.jpg', keywords: ['cute', 'cat'] },
 ]
 
 function getNextImgId(){
-    return gImgs.length + 1
+    return gImgs.length += 1
 }
 
 function _createMeme() {
      gMeme = {
-        selectedImgId: 1,
+        selectedImgId: 0,
         selectedLineIdx: 0,
         lines: [
             {
@@ -127,7 +127,6 @@ function switchLine() {
 
 function setImg(elImg, imgUrl) {
     gMeme.selectedImgId = elImg
-    // _saveMeme()
 }
 function getRandomMeme(){
     const randMemeIdx = getRandomIntInclusive(0, gImgs.length)
@@ -149,12 +148,12 @@ function getMeme() {
 }
 
 function getImgs() {
+    console.log(gImgs);
     return gImgs
 }
 
 function increaseLineSize() {
     gMeme.lines[gMeme.selectedLineIdx].size += 1
-    // _saveMeme()
 }
 
 function decreaseLineSize() {
@@ -162,13 +161,11 @@ function decreaseLineSize() {
         gMeme.lines[gMeme.selectedLineIdx].size += 1
     }
     gMeme.lines[gMeme.selectedLineIdx].size -= 1
-    // _saveMeme()
 }
 
 function changeLineColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color
     renderMeme()
-    // _saveMeme()
 }
 
 function getSelectedLine() {
@@ -177,7 +174,6 @@ function getSelectedLine() {
 
 function setLineText(newTxt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = newTxt
-    // _saveMeme()
     // resizeCanvas()
     // console.log(newTxt);
     console.log(newTxt);
@@ -186,6 +182,7 @@ function setLineText(newTxt) {
 function handleSaveBtn(){
     _saveMeme()
     onSaveMeme()
+    saveCanvas(id, canvasURL)
 }
 
 function _saveMeme() {

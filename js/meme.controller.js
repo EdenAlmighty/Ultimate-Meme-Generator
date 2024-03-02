@@ -103,11 +103,14 @@ function onUp() {
 
 
 function renderMeme() {
-    gCtx.save()
+
+    let imgs = onGetImgs()
+    console.log(imgs);
+    // gCtx.save()
     const meme = onGetMeme()
-    console.log(meme.url);
+    console.log(gImgs[meme.selectedImgId.id].url);
     // meme.url = `img/${meme.selectedImgId.id}.jpg`
-    meme.url = `img/${meme.selectedImgId.id}.jpg`
+    meme.url = imgs[meme.selectedImgId.id].url
 
     const img = new Image()
     img.src = meme.url
@@ -173,27 +176,10 @@ function renderText(line) {
     gCtx.strokeText(txt, x, y)
 }
 
-function onAddLine() {
-    addLine()
-    renderMeme()
-}
-
-function onIncreaseLineSize() {
-    increaseLineSize()
-    renderMeme()
-}
-
-function onDecreaseLineSize() {
-    decreaseLineSize()
-    renderMeme()
-}
-
-function onChangeLineColor(color) {
-    changeLineColor(color)
-}
 
 function onSelectImg(elImg, imgUrl) {
     document.getElementById("main-gallery").classList.add('hidden')
+    document.getElementById("main-saved").classList.add('hidden')
     document.getElementById("main-editor").classList.remove('hidden')
     setImg(elImg, imgUrl)
     renderMeme()
@@ -209,46 +195,6 @@ function onGetRandomMeme() {
     renderMeme()
     resizeCanvas()
 }
-function coverCanvasWithImg(elImg) {
-    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-}
-
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.clientWidth
-}
-
-function onGetMeme() {
-    return getMeme()
-}
-
-function onSetLineTxt(newTxt) {
-    setLineText(newTxt)
-
-    renderMeme()
-    // renderText()
-}
-
-function getEvPos(ev) {
-    let pos = {
-        x: ev.offsetX,
-        y: ev.offsetY,
-    }
-
-    if (TOUCH_EVENTS.includes(ev.type)) {
-
-        ev.preventDefault()
-        ev = ev.changedTouches[0]
-        // Calc pos according to the touch screen
-        pos = {
-            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
-        }
-    }
-    return pos
-}
-
 
 function onHandleSaveBtn() {
     handleSaveBtn()
@@ -285,7 +231,7 @@ function onGetImgIdx(imgId) {
 }
 
 function onGetImgs() {
-    getImgs()
+    return getImgs()
 }
 
 function onGetSelectedLine() {
@@ -297,7 +243,67 @@ function onGetImgURL(imgId) {
 }
 
 function onSaveMeme() {
-    var id = makeId()
+    var id = getNextImgId()
     const canvasUrl = gElCanvas.toDataURL()
     saveCanvas(id, canvasUrl)
+    console.log(canvasUrl);
+
 }
+function onAddLine() {
+    addLine()
+    renderMeme()
+}
+
+function onIncreaseLineSize() {
+    increaseLineSize()
+    renderMeme()
+}
+
+function onDecreaseLineSize() {
+    decreaseLineSize()
+    renderMeme()
+}
+
+function onChangeLineColor(color) {
+    changeLineColor(color)
+}
+
+function onGetMeme() {
+    return getMeme()
+}
+
+function onSetLineTxt(newTxt) {
+    setLineText(newTxt)
+    renderMeme()
+}
+
+function coverCanvasWithImg(elImg) {
+    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
+    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+}
+
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.clientWidth
+}
+
+function getEvPos(ev) {
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+    
+    if (TOUCH_EVENTS.includes(ev.type)) {
+        
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        // Calc pos according to the touch screen
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
+}
+
+
