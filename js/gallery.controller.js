@@ -24,3 +24,50 @@ function switchToGallery(){
     document.getElementById("main-editor").classList.add('hidden')
     
 }
+
+// function onUploadUserImg()
+
+//UPLOAD IMG FROM USER
+function onImgInput(ev) {
+
+    loadImageFromInput(ev, addUserImg)
+
+}
+
+// Read the file from the input
+// When done send the image to the callback function
+
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+
+    reader.onload = ev => {
+        let img = new Image()
+        img.src = ev.target.result
+        img.onload = () => onImageReady(img)
+            // const newImg = {
+            //     id: getNextImgId(),
+            //     url: img.src,
+            //     keywords: ['funny', 'custom']
+            // }
+            // gImgs.push(newImg)
+            // console.log(newImg);
+        
+        // console.log(img);
+    }
+    reader.readAsDataURL(ev.target.files[0])
+    
+}
+
+function addUserImg(img) {
+    
+    const newImg = {
+        id: getNextImgId(),
+        url: img.src,
+        keywords: ['funny', 'custom']
+    }
+    gImgs.push(newImg)
+    // onSelectImg()
+    renderGallery()
+    coverCanvasWithImg(img)
+    
+}

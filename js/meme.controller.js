@@ -55,9 +55,6 @@ function checkClick(ev) {
         const top = line.y - (centerY + 10)
         const bottom = line.y + (centerY + 2)
 
-
-
-
         if (gStartPos.x >= left &&
             gStartPos.x <= right &&
             gStartPos.y >= top &&
@@ -106,9 +103,10 @@ function onUp() {
 
 
 function renderMeme() {
-    gCtx.save()
-    // console.log(gCtx);
+    gCtx.save()    
     const meme = onGetMeme()
+    console.log(meme.url);
+    // meme.url = `img/${meme.selectedImgId.id}.jpg`
     meme.url = `img/${meme.selectedImgId.id}.jpg`
 
     const img = new Image()
@@ -140,12 +138,10 @@ function renderMeme() {
                 gCtx.strokeRect(bounds.left, bounds.top, width, height)
             }
         });
-
-
     }
 }
 
-function onChangeFont(ev){
+function onChangeFont(ev) {
     changeFont(ev)
     renderMeme()
 }
@@ -161,6 +157,101 @@ function onMoveArrows(ev) {
         line.x += moveDirX * 5
     }
     renderMeme()
+}
+
+
+function renderText(line) {
+    gCtx.beginPath()
+    let { size, txt, color, align, x, y, font, stroke } = line
+    // console.log(line);
+    gCtx.fillStyle = color
+    gCtx.strokeStyle = `${stroke}`
+    gCtx.font = size + `px ${font}`
+    gCtx.textAlign = `${align}`
+    gCtx.textBaseline = 'middle'
+    gCtx.fillText(txt, x, y)
+    gCtx.strokeText(txt, x, y)
+}
+
+function onAddLine() {
+    addLine()
+    renderMeme()
+}
+
+function onIncreaseLineSize() {
+    increaseLineSize()
+    renderMeme()
+}
+
+function onDecreaseLineSize() {
+    decreaseLineSize()
+    renderMeme()
+}
+
+function onChangeLineColor(color) {
+    changeLineColor(color)
+}
+
+function onSelectImg(elImg, imgUrl) {
+    document.getElementById("main-gallery").classList.add('hidden')
+    document.getElementById("main-editor").classList.remove('hidden')
+    console.log(elImg);
+    setImg(elImg, imgUrl)
+    renderMeme()
+    resizeCanvas()
+}
+
+function coverCanvasWithImg(elImg) {
+    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
+    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+}
+
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.clientWidth
+}
+
+function onGetMeme() {
+    return getMeme()
+}
+
+function onSetLineTxt(newTxt) {
+    setLineText(newTxt)
+    
+    renderMeme()
+    // renderText()
+}
+
+function getEvPos(ev) {
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+    
+    if (TOUCH_EVENTS.includes(ev.type)) {
+
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        // Calc pos according to the touch screen
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
+}
+
+function onGetRandomMeme(){
+    document.getElementById("main-gallery").classList.add('hidden')
+    document.getElementById("main-editor").classList.remove('hidden')
+    // console.log(elImg);
+    setImg(getRandomIntInclusive(1,18))
+    renderMeme()
+    resizeCanvas()
+}
+
+function onHandleSaveBtn() {
+    handleSaveBtn()
 }
 
 function onAlignLeft() {
@@ -189,88 +280,6 @@ function onSwitchLine() {
     document.getElementById('text-input').value = ''
 }
 
-function renderText(line) {
-    gCtx.beginPath()
-    let { size, txt, color, align, x, y, font, stroke } = line
-    // if (!x || !y) x = 100, y = 100
-    // const { x, y, size, txt, color, align } = line
-    console.log(line);
-    // gCtx.strokeStyle = "red"
-    gCtx.fillStyle = color
-    gCtx.strokeStyle = `${stroke}`
-    gCtx.font = size + `px ${font}`
-    gCtx.textAlign = `${align}`
-    gCtx.textBaseline = 'middle'
-    gCtx.fillText(txt, x, y)
-    gCtx.strokeText(txt, x, y)
-    // drawText(line)
-}
-
-// function drawText(line) {
-//     gCtx.beginPath()
-//     const { x, y, size, txt, color } = line
-
-//     gCtx.fillStyle = color
-//     gCtx.font = size + 'px Arial'
-//     gCtx.textAlign = 'center'
-//     gCtx.textBaseline = 'middle'
-//     gCtx.fillText(txt, x, y)
-// }
-
-function onAddLine() {
-    addLine()
-    renderMeme()
-    // const elTextInput = document.getElementById('text-input')
-    // elTextInput.focus()
-    // elTextInput.value = ''
-}
-
-
-
-function onIncreaseLineSize() {
-    increaseLineSize()
-    renderMeme()
-}
-
-function onDecreaseLineSize() {
-    decreaseLineSize()
-    renderMeme()
-}
-
-function onChangeLineColor(color) {
-    changeLineColor(color)
-}
-
-function onSelectImg(elImg, imgUrl) {
-    document.getElementById("main-gallery").classList.add('hidden')
-    document.getElementById("main-editor").classList.remove('hidden')
-
-    setImg(elImg, imgUrl)
-    renderMeme()
-    resizeCanvas()
-}
-
-function coverCanvasWithImg(elImg) {
-    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-}
-
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.clientWidth
-}
-
-function onGetMeme() {
-    return getMeme()
-}
-
-function onSetLineTxt(newTxt) {
-    setLineText(newTxt)
-
-    renderMeme()
-    // renderText()
-}
-
 function onGetImgIdx(imgId) {
     return getImgIdx(imgId)
 }
@@ -283,23 +292,8 @@ function onGetImgURL(imgId) {
     getImgURL(imgId)
 }
 
-
-function getEvPos(ev) {
-    let pos = {
-        x: ev.offsetX,
-        y: ev.offsetY,
-    }
-
-    if (TOUCH_EVENTS.includes(ev.type)) {
-
-        ev.preventDefault()
-        ev = ev.changedTouches[0]
-        // Calc pos according to the touch screen
-        pos = {
-            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
-        }
-    }
-    return pos
+function onSaveMeme(){
+    var id = makeId()
+    const canvasUrl = gElCanvas.toDataURL()
+    saveCanvas(id, canvasUrl)
 }
-

@@ -1,0 +1,53 @@
+$flaticon_meme_gen-font: "flaticon_meme_gen";
+
+@font-face {
+    font-family: $flaticon_meme_gen-font;
+    src: url("./flaticon_meme_gen.woff2?ea53a0cc929115d1f2d12fc9018e5fd6") format("woff2"),
+url("./flaticon_meme_gen.woff?ea53a0cc929115d1f2d12fc9018e5fd6") format("woff"),
+url("./flaticon_meme_gen.eot?ea53a0cc929115d1f2d12fc9018e5fd6#iefix") format("embedded-opentype"),
+url("./flaticon_meme_gen.ttf?ea53a0cc929115d1f2d12fc9018e5fd6") format("truetype"),
+url("./flaticon_meme_gen.svg?ea53a0cc929115d1f2d12fc9018e5fd6#flaticon_meme_gen") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_meme_gen !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon_meme_gen-map: (
+    "minus-button": "\f101",
+    "plus": "\f102",
+    "align-left": "\f103",
+    "format": "\f104",
+    "align-right": "\f105",
+    "remove": "\f106",
+    "up-down": "\f107",
+);
+
+.flaticon-minus-button:before {
+    content: map-get($flaticon_meme_gen-map, "minus-button");
+}
+.flaticon-plus:before {
+    content: map-get($flaticon_meme_gen-map, "plus");
+}
+.flaticon-align-left:before {
+    content: map-get($flaticon_meme_gen-map, "align-left");
+}
+.flaticon-format:before {
+    content: map-get($flaticon_meme_gen-map, "format");
+}
+.flaticon-align-right:before {
+    content: map-get($flaticon_meme_gen-map, "align-right");
+}
+.flaticon-remove:before {
+    content: map-get($flaticon_meme_gen-map, "remove");
+}
+.flaticon-up-down:before {
+    content: map-get($flaticon_meme_gen-map, "up-down");
+}

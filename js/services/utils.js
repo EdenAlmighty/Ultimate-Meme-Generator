@@ -12,15 +12,15 @@ function makeId(length = 5) {
 
 const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
 function addListeners() {
-	addMouseListeners()
-	addTouchListeners()
-	//Listen for resize ev
-	window.addEventListener('resize', () => {
-		resizeCanvas()
-		//Calc the center of the canvas
-		const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
-		renderMeme()
-	})
+    addMouseListeners()
+    addTouchListeners()
+    //Listen for resize ev
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+        //Calc the center of the canvas
+        const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
+        renderMeme()
+    })
     document.addEventListener('keydown', onMoveArrows)
 }
 
@@ -64,4 +64,9 @@ function toggleMenu() {
     document.body.classList.toggle('menu-open')
     const hamMenu = document.querySelector('.hamburger-menu')
     hamMenu.classList.toggle('active')
+}
+
+
+function getRandomIntInclusive(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
 }

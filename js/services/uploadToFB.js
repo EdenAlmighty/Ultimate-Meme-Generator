@@ -12,6 +12,7 @@ function onUploadImg() {
     
     // Send the image to the server
     doUploadImg(imgDataUrl, onSuccess)
+    
 }
 
 // Upload the image to a server, get back a URL 

@@ -1,20 +1,16 @@
-.btn {
-    border: none;
-    /* background-color: white; */
+.btn *{
     border-radius: 4px;
-    height: 3.125em; 
-    width: 3.125em; 
     cursor: pointer;
 }
 
 .color-picker {
-    width: 5em;
+    /* width: 5em; */
     cursor: pointer;
 }
 
 
 .change-font.btn{
-    width: 14.5em;
+    /* width: 14.5em; */
 }
 
 input[type="color"] {
@@ -95,4 +91,24 @@ input[type="color"]::-webkit-color-swatch {
 .hamburger-menu.active .bar-bottom{
     transform: translate(-50%, -50%) rotate(315deg);
     top: 50%;
+}
+
+i{
+    font-size: 2em;
+    justify-content: space-between;
+}
+i::before{
+
+    display: flex;
+    font-size: 1.5em;
+    border-radius: .1em;
+    color: rgb(28, 149, 171);
+    background-color: rgb(232, 232, 232);
+    align-items: center;
+    justify-content: space-around;
+}
+
+.flaticon-remove::before{
+    color: rgb(241, 20, 20);
+    background-color: black;
 }

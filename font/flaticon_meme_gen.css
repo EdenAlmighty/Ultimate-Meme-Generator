@@ -1,0 +1,53 @@
+/*!
+*    ______ _       _   _
+*    |  ____| |     | | (_)
+*    | |__  | | __ _| |_ _  ___ ___  _ __
+*    |  __| | |/ _` | __| |/ __/ _ \| '_ \
+*    | |    | | (_| | |_| | (_| (_) | | | |
+*    |_|    |_|\__,_|\__|_|\___\___/|_| |_|
+*
+*         https://www.flaticon.com
+*/
+
+@font-face {
+    font-family: "flaticon_meme_gen";
+    src: url("./flaticon_meme_gen.woff2?ea53a0cc929115d1f2d12fc9018e5fd6") format("woff2"),
+url("./flaticon_meme_gen.woff?ea53a0cc929115d1f2d12fc9018e5fd6") format("woff"),
+url("./flaticon_meme_gen.eot?ea53a0cc929115d1f2d12fc9018e5fd6#iefix") format("embedded-opentype"),
+url("./flaticon_meme_gen.ttf?ea53a0cc929115d1f2d12fc9018e5fd6") format("truetype"),
+url("./flaticon_meme_gen.svg?ea53a0cc929115d1f2d12fc9018e5fd6#flaticon_meme_gen") format("svg")
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_meme_gen !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-minus-button:before {
+    content: "\f101";
+}
+.flaticon-plus:before {
+    content: "\f102";
+}
+.flaticon-align-left:before {
+    content: "\f103";
+}
+.flaticon-format:before {
+    content: "\f104";
+}
+.flaticon-align-right:before {
+    content: "\f105";
+}
+.flaticon-remove:before {
+    content: "\f106";
+}
+.flaticon-up-down:before {
+    content: "\f107";
+}
+

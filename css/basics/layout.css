@@ -38,6 +38,7 @@
 
 
 canvas {
+    border-radius: 2em;
     width: 100%;
     display: block;
     background-color: white;
