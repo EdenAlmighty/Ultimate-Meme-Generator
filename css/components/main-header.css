@@ -4,7 +4,10 @@
 
 }
 
-
+main-nav-list li:hover{
+    background-color: beige;
+    color: black;
+}
 
 .main-nav-list {
     margin-right: 1em;

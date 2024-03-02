@@ -16,6 +16,7 @@ function renderGallery(){
 
     const elGallery = document.querySelector('.gallery-container')
     elGallery.innerHTML = galleryHTML.join('')
+    renderKeywordsList()
 }
 
 function renderSavedMemes(){
@@ -32,6 +33,19 @@ function renderSavedMemes(){
     elSavedMemes.innerHTML = savedHTML.join('')
 }
 
+
+
+function renderKeywordsList(){
+    var imgs = onGetImgs()
+    console.log(imgs);
+    
+    // const keyword  = 
+}
+
+//
+
+
+
 function switchToGallery(){
     document.getElementById("main-gallery").classList.remove('hidden')
     document.getElementById("main-editor").classList.add('hidden')
@@ -43,6 +57,13 @@ function switchToSaved(){
     document.getElementById("main-gallery").classList.add('hidden')
     document.getElementById("main-saved").classList.remove('hidden')
     renderSavedMemes()
+}
+
+
+function onSetFilterBy(value, key){
+    if(!value) setFilterBy(value)
+     setFilterBy(key)
+    renderGallery()
 }
 // function onUploadUserImg()
 

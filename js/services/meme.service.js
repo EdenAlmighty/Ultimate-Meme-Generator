@@ -3,37 +3,49 @@
 
 const MEME_DB = 'memeDB'
 const IMG_DB = 'imgDB'
+let gFilterBy = ''
+
+var gSavedMems = loadFromStorage(IMG_DB) || {}
+
+
+
 
 var gMeme = loadFromStorage(MEME_DB) || _createMeme()
 // _createMeme()
 
+
+
 var gImgs = [
     { id: 0, url: 'img/1.jpg', keywords: ['funny', 'men'] },
     { id: 1, url: 'img/2.jpg', keywords: ['cute', 'puppy'] },
-    { id: 2, url: 'img/3.jpg', keywords: ['cute', 'puppy'] },
+    { id: 2, url: 'img/3.jpg', keywords: ['cute', 'baby'] },
     { id: 3, url: 'img/4.jpg', keywords: ['cute', 'cat'] },
-    { id: 4, url: 'img/5.jpg', keywords: ['cute', 'cat'] },
-    { id: 5, url: 'img/6.jpg', keywords: ['cute', 'cat'] },
-    { id: 6, url: 'img/7.jpg', keywords: ['cute', 'cat'] },
-    { id: 7, url: 'img/8.jpg', keywords: ['cute', 'cat'] },
-    { id: 8, url: 'img/9.jpg', keywords: ['cute', 'cat'] },
-    { id: 9, url: 'img/10.jpg', keywords: ['cute', 'cat'] },
-    { id: 10, url: 'img/11.jpg', keywords: ['cute', 'cat'] },
-    { id: 11, url: 'img/12.jpg', keywords: ['cute', 'cat'] },
-    { id: 12, url: 'img/13.jpg', keywords: ['cute', 'cat'] },
-    { id: 13, url: 'img/14.jpg', keywords: ['cute', 'cat'] },
-    { id: 14, url: 'img/15.jpg', keywords: ['cute', 'cat'] },
-    { id: 15, url: 'img/16.jpg', keywords: ['cute', 'cat'] },
-    { id: 16, url: 'img/17.jpg', keywords: ['cute', 'cat'] },
-    { id: 17, url: 'img/18.jpg', keywords: ['cute', 'cat'] },
+    { id: 4, url: 'img/5.jpg', keywords: ['funny', 'baby'] },
+    { id: 5, url: 'img/6.jpg', keywords: ['funny', 'men'] },
+    { id: 6, url: 'img/7.jpg', keywords: ['funny', 'baby'] },
+    { id: 7, url: 'img/8.jpg', keywords: ['funny', 'men'] },
+    { id: 8, url: 'img/9.jpg', keywords: ['funny', 'baby'] },
+    { id: 9, url: 'img/10.jpg', keywords: ['funny', 'men'] },
+    { id: 10, url: 'img/11.jpg', keywords: ['gay', 'men'] },
+    { id: 11, url: 'img/12.jpg', keywords: ['funny', 'men'] },
+    { id: 12, url: 'img/13.jpg', keywords: ['funny', 'men'] },
+    { id: 13, url: 'img/14.jpg', keywords: ['funny', 'men'] },
+    { id: 14, url: 'img/15.jpg', keywords: ['funny', 'men'] },
+    { id: 15, url: 'img/16.jpg', keywords: ['funny', 'men'] },
+    { id: 16, url: 'img/17.jpg', keywords: ['funny', 'men'] },
+    { id: 17, url: 'img/18.jpg', keywords: ['funny', 'toy'] },
 ]
 
-function getNextImgId(){
+var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2, 'men': 10 }
+
+
+
+function getNextImgId() {
     return gImgs.length += 1
 }
 
 function _createMeme() {
-     gMeme = {
+    gMeme = {
         selectedImgId: 0,
         selectedLineIdx: 0,
         lines: [
@@ -61,22 +73,18 @@ function _createMeme() {
             }
         ]
     }
-    saveToStorage(MEME_DB, gMeme)
+    // saveToStorage(MEME_DB, gMeme)
     return gMeme
 }
-// _saveMeme()
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 function changeFont(ev) {
     const line = getSelectedLine()
     line.font = ev
-    // _saveMeme()
 }
 
 function deleteLine() {
     gMeme.lines = gMeme.lines.filter((line, idx) => idx !== gMeme.selectedLineIdx)
     if (gMeme.selectedLineIdx != 0) gMeme.selectedLineIdx--
-    // _saveMeme()
 }
 
 function addLine() {
@@ -89,22 +97,18 @@ function addLine() {
     if (gMeme.selectedLineIdx <= 1) gMeme.selectedLineIdx = 2
     else gMeme.selectedLineIdx++
     console.log(gMeme.lines);
-    // _saveMeme()
     renderText()
 }
 
 // TEXT IS MEASURED FROM THE CENTER. TO ALIGN LEFT I NEED TO SET RIGHT
 function alignLeft() {
     gMeme.lines[gMeme.selectedLineIdx].align = 'right'
-    // _saveMeme()
 }
 function alignCenter() {
     gMeme.lines[gMeme.selectedLineIdx].align = 'center'
-    // _saveMeme()
 }
 function alignRight() {
     gMeme.lines[gMeme.selectedLineIdx].align = 'left'
-    // _saveMeme()
 }
 
 function setLineDrag(isDrag) {
@@ -114,7 +118,6 @@ function setLineDrag(isDrag) {
 function moveText(dx, dy) {
     gMeme.lines[gMeme.selectedLineIdx].x += dx
     gMeme.lines[gMeme.selectedLineIdx].y += dy
-    // _saveMeme()
 }
 
 function switchLine() {
@@ -128,11 +131,10 @@ function switchLine() {
 function setImg(elImg, imgUrl) {
     gMeme.selectedImgId = elImg
 }
-function getRandomMeme(){
+function getRandomMeme() {
     const randMemeIdx = getRandomIntInclusive(0, gImgs.length)
     gMeme.selectedImgId = randMemeIdx
     console.log(gMeme.selectedImgId);
-    // return gMeme
 }
 
 function getImgURL(imgId) {
@@ -148,9 +150,23 @@ function getMeme() {
 }
 
 function getImgs() {
-    console.log(gImgs);
-    return gImgs
+    if (!gFilterBy) return gImgs
+
+    return gImgs.filter(img =>
+        img.keywords.some(keywords => keywords.includes(gFilterBy))
+    )
+
+    // console.log(gImgs);
 }
+
+function setFilterBy(filterBy){
+    gFilterBy = filterBy
+}
+
+function getFilterMap(){
+    return gKeywordSearchCountMap
+}
+
 
 function increaseLineSize() {
     gMeme.lines[gMeme.selectedLineIdx].size += 1
@@ -177,11 +193,10 @@ function setLineText(newTxt) {
     // resizeCanvas()
     // console.log(newTxt);
     console.log(newTxt);
-}   
+}
 
-function handleSaveBtn(){
+function handleSaveBtn() {
     _saveMeme()
-    onSaveMeme()
     saveCanvas(id, canvasURL)
 }
 
@@ -190,6 +205,6 @@ function _saveMeme() {
 }
 
 function saveCanvas(id, canvasURL) {
-    gImgs.push({id,canvasURL})
+    gSavedMems.push({ id, canvasURL })
     saveToStorage(IMG_DB, gImgs)
 }

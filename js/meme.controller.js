@@ -4,12 +4,7 @@ let gElCanvas
 let gCtx
 let gStartPos
 let meme
-let gLine = {}
 
-
-function getLine() {
-    return gLine
-}
 // let gCurrMeme
 
 function onInit() {
@@ -243,7 +238,7 @@ function onGetImgURL(imgId) {
 }
 
 function onSaveMeme() {
-    var id = getNextImgId()
+    var id = makeId()
     const canvasUrl = gElCanvas.toDataURL()
     saveCanvas(id, canvasUrl)
     console.log(canvasUrl);

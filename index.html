@@ -36,6 +36,12 @@
         </header>
         <div id="main-gallery" class="main-gallery">
             <h2>Gallery</h2>
+            <div class="key-words flex align center" >
+            
+            </div>
+            <form class="form flex space-around">
+                <input type="search" placeholder="Search" list="keywords" oninput="onSetFilterBy(this.value)"> 
+            </form>
             <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
             <button class="btn" onclick="onGetRandomMeme()">I'm Flexable!</button>
             <section class="gallery-container grid">
@@ -59,7 +65,7 @@
                         <input class="text-input" id="text-input" oninput="onSetLineTxt(this.value)" type="text"
                             placeholder="ADD TEXT">
                     </div>
-                    <div class="edit-btn-container flex">
+                    <div class="edit-btn-container ">
                         <div class="switch-text" onclick="onSwitchLine()"><i class="flaticon-up-down"></i></div>
                         <div class="add-text" onclick="onAddLine()"><i class="flaticon-plus"></i></div>
                         <div class="delete-text" onclick="onDeleteLine()"><i class="flaticon-remove"></i></div>

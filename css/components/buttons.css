@@ -4,14 +4,9 @@
 }
 
 .color-picker {
-    /* width: 5em; */
     cursor: pointer;
 }
 
-
-.change-font.btn{
-    /* width: 14.5em; */
-}
 
 input[type="color"] {
     border: none;
@@ -25,25 +20,31 @@ input[type="color"]::-webkit-color-swatch {
     border: none;
 }
 
+.edit-btn-container{
+    display: flex;
+   margin: 1em;
+   gap: 0.5em;
+}
+
+
+
 .edit-btn-container .btn{
     height: 3.75em;
     width: 3.75em;
 }
 
 .share-container .btn{
+    height: 3em;
     margin: 1em;
-    width: 13em;
 }
 
 .share{
     background-color: #4267B2;
-    font-weight: bold;
     color: white;
 }
 
 .download{
     background-color: green;
-    font-weight: bold;
     color: white;
 
 }

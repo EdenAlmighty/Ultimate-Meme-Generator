@@ -14,7 +14,7 @@ h3 {
     margin: 0;
     text-align: center;
     margin: .2em;
-  
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 img {
@@ -22,8 +22,8 @@ img {
     border-radius: 2em;
     cursor: pointer;
     padding: .3em;
-    transition: 0.2s ;
-
+    transition: 0.2s;
+    
 }
 
 
@@ -32,4 +32,5 @@ a {
     color: var(--primary1);
     text-decoration: none;
     cursor: pointer;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
