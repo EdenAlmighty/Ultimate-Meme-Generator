@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="font\flaticon_meme_gen.css">
-    
+
     <link rel="stylesheet" href="css/main.css">
     <title>Ultimate MEME Gen</title>
 </head>
 
 <body class="main-layout " onload="onInit()">
-    <main class="main-layout" >
+    <main class="main-layout">
         <div class="main-screen " onclick="toggleMenu()"></div>
 
         <header class="main-header full main-layout">
@@ -30,11 +30,8 @@
                         <li><a href="#" class="saved-nav">Saved Memes</a></li>
                     </ul>
                 </nav>
-                
-            </div>
 
-            <!-- <button class="gallery-nav" onclick="switchToGallery()">Gallery</button> -->
-            <!-- <button class="saved-nav" >Saved MEMES</button> -->
+            </div>
 
         </header>
         <div id="main-gallery" class="main-gallery">
@@ -58,41 +55,27 @@
                             placeholder="ADD TEXT">
                     </div>
                     <div class="edit-btn-container flex">
-                        <!-- <button class="btn switch-text" onclick="onSwitchLine()">$$</button> -->
-                        <!-- <button class="btn add-text" onclick="onAddLine()">Add</button> -->
-                        <!-- <button class="btn delete-text" onclick="onDeleteLine()">Del</button> -->
                         <div class="switch-text" onclick="onSwitchLine()"><i class="flaticon-up-down"></i></div>
                         <div class="add-text" onclick="onAddLine()"><i class="flaticon-plus"></i></div>
                         <div class="delete-text" onclick="onDeleteLine()"><i class="flaticon-remove"></i></div>
                     </div>
 
                     <div class="style-container grid ">
-                        <!-- <div class="top-styles grid flow-column"> -->
-                        <!-- <button class="btn grow" onclick="onIncreaseLineSize()">+</button> -->
                         <div class="grow" onclick="onIncreaseLineSize()"><i class="flaticon-plus"></i></div>
-                        <!-- <button class="btn shrink flaticon-align-left" onclick="onDecreaseLineSize()"></span></button> -->
                         <div class="shrink" onclick="onDecreaseLineSize()"><i class="flaticon-minus-button"></i></div>
                         <div class="align-left" onclick="onAlignLeft()"><i class="flaticon-align-left"></i></div>
                         <div class="align-text-center" onclick="onAlignCenter()"><i class="flaticon-format"></i></div>
                         <div class="align-right" onclick="onAlignRight()"><i class="flaticon-align-right"></i></div>
-                        <!-- <button class="btn align-left" onclick="onAlignLeft()">L</button> -->
-                        <!-- <button class="btn align-text-center" onclick="onAlignCenter()">C</button>
-                            <button class="btn align-right" onclick="onAlignRight()">R</button> -->
-                            
-                            <!-- </div> -->
-                            <!-- <div class="bottom-styles grid flow-column"> -->
-                                
-                                <select class="btn change-font" name="change-font" onchange="onChangeFont(this.value)">
-                                    <option value="Impact">Impact</option>
-                                    <option value="Arial">Arial</option>
-                                    <option value="Times New Roman">Times New Roman</option>
-                                </select>
-                                <button class="btn save" onclick="onHandleSaveBtn()">Save MEME</button>
-                                <button class="btn color-picker"><input oninput="onChangeLineColor(this.value)" type="color"
+
+                        <select class="btn change-font" name="change-font" onchange="onChangeFont(this.value)">
+                            <option value="Impact">Impact</option>
+                            <option value="Arial">Arial</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                        </select>
+                        <button class="btn save" onclick="onHandleSaveBtn()">Save MEME</button>
+                        <button class="btn color-picker"><input oninput="onChangeLineColor(this.value)" type="color"
                                 name="color-picker" id="color-picker"></button>
-                        <!-- </div> -->
                     </div>
-                    <!-- <i class="flaticon-format"></i> -->
 
                     <div class="share-container ">
                         <button class="btn share" onclick="onUploadImg()">Upload to Facebook</button>

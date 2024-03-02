@@ -103,7 +103,7 @@ function onUp() {
 
 
 function renderMeme() {
-    gCtx.save()    
+    gCtx.save()
     const meme = onGetMeme()
     console.log(meme.url);
     // meme.url = `img/${meme.selectedImgId.id}.jpg`
@@ -195,12 +195,20 @@ function onChangeLineColor(color) {
 function onSelectImg(elImg, imgUrl) {
     document.getElementById("main-gallery").classList.add('hidden')
     document.getElementById("main-editor").classList.remove('hidden')
-    console.log(elImg);
     setImg(elImg, imgUrl)
     renderMeme()
     resizeCanvas()
 }
 
+function onGetRandomMeme() {
+    const imgs = getImgs()
+    const elImg = imgs[getRandomIntInclusive(1, imgs.length)]
+    document.getElementById("main-gallery").classList.add('hidden')
+    document.getElementById("main-editor").classList.remove('hidden')
+    setImg(elImg)
+    renderMeme()
+    resizeCanvas()
+}
 function coverCanvasWithImg(elImg) {
     gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
@@ -217,7 +225,7 @@ function onGetMeme() {
 
 function onSetLineTxt(newTxt) {
     setLineText(newTxt)
-    
+
     renderMeme()
     // renderText()
 }
@@ -227,7 +235,7 @@ function getEvPos(ev) {
         x: ev.offsetX,
         y: ev.offsetY,
     }
-    
+
     if (TOUCH_EVENTS.includes(ev.type)) {
 
         ev.preventDefault()
@@ -241,14 +249,6 @@ function getEvPos(ev) {
     return pos
 }
 
-function onGetRandomMeme(){
-    document.getElementById("main-gallery").classList.add('hidden')
-    document.getElementById("main-editor").classList.remove('hidden')
-    // console.log(elImg);
-    setImg(getRandomIntInclusive(1,18))
-    renderMeme()
-    resizeCanvas()
-}
 
 function onHandleSaveBtn() {
     handleSaveBtn()
@@ -284,6 +284,10 @@ function onGetImgIdx(imgId) {
     return getImgIdx(imgId)
 }
 
+function onGetImgs() {
+    getImgs()
+}
+
 function onGetSelectedLine() {
     getSelectedLine()
 }
@@ -292,7 +296,7 @@ function onGetImgURL(imgId) {
     getImgURL(imgId)
 }
 
-function onSaveMeme(){
+function onSaveMeme() {
     var id = makeId()
     const canvasUrl = gElCanvas.toDataURL()
     saveCanvas(id, canvasUrl)
