@@ -159,11 +159,11 @@ function getImgs() {
     // console.log(gImgs);
 }
 
-function setFilterBy(filterBy){
+function setFilterBy(filterBy) {
     gFilterBy = filterBy
 }
 
-function getFilterMap(){
+function getFilterMap() {
     return gKeywordSearchCountMap
 }
 

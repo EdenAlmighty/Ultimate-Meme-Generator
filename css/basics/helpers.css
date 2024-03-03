@@ -29,7 +29,6 @@
 
 
 /* FLEX HELPERS */
-
 .flex {
     display: flex;
 }
@@ -47,8 +46,9 @@
 .flex.columns{
     flex-direction: column;
 }
-/* DISPLAY HELPERS */
 
+
+/* DISPLAY HELPERS */
 .hidden {
     display: none;
 }

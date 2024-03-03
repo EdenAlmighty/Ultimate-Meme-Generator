@@ -4,8 +4,9 @@
 
 body {
     background-color: var(--primary-1);
-    color: white;
+    color: var(--primary-base);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 0.04em;
 }
 
 h1,
@@ -14,7 +15,6 @@ h3 {
     margin: 0;
     text-align: center;
     margin: .2em;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 img {
@@ -28,8 +28,7 @@ img {
 
 
 
-a {
-    color: var(--primary1);
+a, .logo {
     text-decoration: none;
     cursor: pointer;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;

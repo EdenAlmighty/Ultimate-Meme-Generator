@@ -1,35 +1,14 @@
 
 /* MAIN LAYOUT */
 
-.main-layout {
-    display: grid;
-    grid-template-columns: minmax(20px, 1fr) minmax(auto, 980px) minmax(20px, 1fr);
-    margin-left: auto;
-    margin-right: auto;
-    margin: 0;
-    margin-bottom: 2em;
-}
-
 .gallery-nav, .saved-nav{
     border: none;
     color: white;
     font-size: 1.2em;
-    padding-left: .5em;
-    padding-right: .5em;
-    font-weight: bold;
-    background: none;
-    cursor: pointer;
+
 }
 
 /* GALLERY LAYOUT */
-
-.gallery-container{
-    height: 23vh;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    row-gap: 10px;
-    gap: 1em;
-    padding: .5em;
-}
 .saved-container{
     height: 23vh;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -51,7 +30,6 @@ canvas {
     grid-column: 2;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .controls-container {

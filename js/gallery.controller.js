@@ -1,13 +1,9 @@
 'use strict'
-// function onInit(){
-//     renderGallery()
-// }
 
-
-function renderGallery(){
+function renderGallery() {
     const imgs = getImgs()
 
-    const galleryHTML  = imgs.map(img => `
+    const galleryHTML = imgs.map(img => `
         <img id="${img.id}" 
         src="${img.url}" 
         onclick="onSelectImg(this, '${img.url}')" 
@@ -19,53 +15,44 @@ function renderGallery(){
     renderKeywordsList()
 }
 
-function renderSavedMemes(){
+function renderSavedMemes() {
     const imgs = getImgs()
 
-    const savedHTML  = imgs.map(img => `
+    const savedHTML = imgs.map(img => `
         <img id="${img.id}" 
         src="${img.url}" 
         onclick="onSelectImg(this, '${img.url}')" 
         alt="${img.keywords}">
         `)
-
     const elSavedMemes = document.querySelector('.saved-container')
     elSavedMemes.innerHTML = savedHTML.join('')
 }
 
 
 
-function renderKeywordsList(){
+function renderKeywordsList() {
     var imgs = onGetImgs()
     console.log(imgs);
-    
-    // const keyword  = 
 }
 
-//
-
-
-
-function switchToGallery(){
+function switchToGallery() {
     document.getElementById("main-gallery").classList.remove('hidden')
     document.getElementById("main-editor").classList.add('hidden')
     document.getElementById("main-saved").classList.add('hidden')
 }
 
-function switchToSaved(){
+function switchToSaved() {
     document.getElementById("main-editor").classList.add('hidden')
     document.getElementById("main-gallery").classList.add('hidden')
     document.getElementById("main-saved").classList.remove('hidden')
     renderSavedMemes()
 }
 
-
-function onSetFilterBy(value, key){
-    if(!value) setFilterBy(value)
-     setFilterBy(key)
+function onSetFilterBy(value, key) {
+    if (!value) setFilterBy(value)
+    setFilterBy(key)
     renderGallery()
 }
-// function onUploadUserImg()
 
 //UPLOAD IMG FROM USER
 function onImgInput(ev) {
@@ -84,30 +71,17 @@ function loadImageFromInput(ev, onImageReady) {
         let img = new Image()
         img.src = ev.target.result
         img.onload = () => onImageReady(img)
-            // const newImg = {
-            //     id: getNextImgId(),
-            //     url: img.src,
-            //     keywords: ['funny', 'custom']
-            // }
-            // gImgs.push(newImg)
-            // console.log(newImg);
-        
-            // console.log(img);
-        }
-        reader.readAsDataURL(ev.target.files[0])
-        // coverCanvasWithImg(img.dataURL)
-    
+    }
+    reader.readAsDataURL(ev.target.files[0])
 }
 
 function addUserImg(img) {
-    
+
     const newImg = {
         id: getNextImgId(),
         url: img.src,
         keywords: ['funny', 'custom']
     }
     gImgs.push(newImg)
-    // onSelectImg()
     renderGallery()
-    
 }

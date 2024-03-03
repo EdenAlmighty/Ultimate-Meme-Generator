@@ -35,7 +35,6 @@ function checkClick(ev) {
     const meme = onGetMeme()
     let lineSelected = false
 
-
     meme.lines.forEach((line, idx) => {
 
         const textMetrics = gCtx.measureText(line.txt)
@@ -47,7 +46,7 @@ function checkClick(ev) {
 
         const left = line.x - (centerX - 2)
         const right = line.x + (centerX + 2)
-        const top = line.y - (centerY + 10)
+        const top = line.y - (centerY + 2)
         const bottom = line.y + (centerY + 2)
 
         if (gStartPos.x >= left &&
@@ -58,13 +57,10 @@ function checkClick(ev) {
             lineSelected = true
             renderText(line)
             renderMeme()
-            console.log(line);
-            console.log('selectedLineIdx', meme.selectedLineIdx, ' gStartPos.x', gStartPos.x, ' gStartPos.y', gStartPos.y);
         }
     })
 
     if (lineSelected) {
-        // console.log(meme.lines[meme.selectedLineIdx].txt);
         const elInput = document.querySelector('.text-input')
         elInput.value = meme.lines[meme.selectedLineIdx].txt
         elInput.focus()
@@ -84,7 +80,6 @@ function onMove(ev) {
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
     moveText(dx, dy, gElCanvas)
-    // console.log(gStartPos);
 
     gStartPos = pos
 
@@ -101,10 +96,8 @@ function renderMeme() {
 
     let imgs = onGetImgs()
     console.log(imgs);
-    // gCtx.save()
     const meme = onGetMeme()
     console.log(gImgs[meme.selectedImgId.id].url);
-    // meme.url = `img/${meme.selectedImgId.id}.jpg`
     meme.url = imgs[meme.selectedImgId.id].url
 
     const img = new Image()
@@ -161,12 +154,13 @@ function onMoveArrows(ev) {
 function renderText(line) {
     gCtx.beginPath()
     let { size, txt, color, align, x, y, font, stroke } = line
-    // console.log(line);
+
     gCtx.fillStyle = color
     gCtx.strokeStyle = `${stroke}`
     gCtx.font = size + `px ${font}`
     gCtx.textAlign = `${align}`
     gCtx.textBaseline = 'middle'
+
     gCtx.fillText(txt, x, y)
     gCtx.strokeText(txt, x, y)
 }
@@ -176,16 +170,22 @@ function onSelectImg(elImg, imgUrl) {
     document.getElementById("main-gallery").classList.add('hidden')
     document.getElementById("main-saved").classList.add('hidden')
     document.getElementById("main-editor").classList.remove('hidden')
+    
     setImg(elImg, imgUrl)
     renderMeme()
+
     resizeCanvas()
+    document.getElementById('text-input').value = ''
+    document.getElementById('text-input').focus()
 }
 
 function onGetRandomMeme() {
     const imgs = getImgs()
     const elImg = imgs[getRandomIntInclusive(1, imgs.length)]
+
     document.getElementById("main-gallery").classList.add('hidden')
     document.getElementById("main-editor").classList.remove('hidden')
+
     setImg(elImg)
     renderMeme()
     resizeCanvas()
@@ -270,11 +270,13 @@ function onGetMeme() {
 function onSetLineTxt(newTxt) {
     setLineText(newTxt)
     renderMeme()
+    // document.getElementById('text-input').value = ''
 }
 
 function coverCanvasWithImg(elImg) {
     gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+
 }
 
 function resizeCanvas() {
@@ -287,9 +289,9 @@ function getEvPos(ev) {
         x: ev.offsetX,
         y: ev.offsetY,
     }
-    
+
     if (TOUCH_EVENTS.includes(ev.type)) {
-        
+
         ev.preventDefault()
         ev = ev.changedTouches[0]
         // Calc pos according to the touch screen
