@@ -13,28 +13,33 @@ function renderGallery() {
     const elGallery = document.querySelector('.gallery-container')
     elGallery.innerHTML = galleryHTML.join('')
     renderKeywordsList()
-
 }
 
 function renderSavedMemes() {
-    const imgs = getImgs()
+    const savedMemes = getSavedMemes()
 
-    const savedHTML = imgs.map(img => `
-        <img id="${img.id}" 
-        src="${img.url}" 
-        onclick="onSelectImg(this, '${img.url}')" 
-        alt="${img.keywords}">
-        `)
+    const savedHTML = savedMemes.map(meme => {
+
+    return `<img id="makeId()"
+     src="${meme.dataURL}" 
+     alt="${meme.id}" 
+     onclick="onEditSavedMeme('${meme.id}')">`
+    })
+    
     const elSavedMemes = document.querySelector('.saved-container')
     elSavedMemes.innerHTML = savedHTML.join('')
+}
+
+function onEditSavedMeme(memeId) {
+    setSavedMeme(memeId)
+    onSelectSavedMeme(memeId)
+    renderMeme()
 }
 
 function renderKeywordsList() {
     var imgs = onGetImgs()
     console.log(imgs);
 }
-
-
 
 function switchToSaved() {
     document.getElementById("main-editor").classList.add('hidden')
@@ -44,16 +49,14 @@ function switchToSaved() {
 }
 
 function onSetFilterBy(value, key) {
-    if (!value) setFilterBy(value)
-    setFilterBy(key)
+    if (value) setFilterBy(value)
+    else setFilterBy(key)
     renderGallery()
 }
 
 //UPLOAD IMG FROM USER
 function onImgInput(ev) {
-
     loadImageFromInput(ev, addUserImg)
-
 }
 
 // Read the file from the input

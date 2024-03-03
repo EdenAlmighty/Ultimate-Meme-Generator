@@ -96,14 +96,15 @@ function renderMeme() {
     let imgs = onGetImgs()
     console.log(imgs);
     const meme = onGetMeme()
-    console.log(gImgs[meme.selectedImgId.id].url);
-    meme.url = imgs[meme.selectedImgId.id].url
+    if(meme.dataURL) meme.url = meme.dataURL
+    else meme.url = imgs[meme.selectedImgId.id].url
 
     const img = new Image()
     img.src = meme.url
     img.onload = () => {
         coverCanvasWithImg(img)
-
+        const dataURL = gElCanvas.toDataURL('image/jpeg')
+        setDataURL(dataURL)
         meme.lines.forEach((line, idx) => {
             renderText(line)
             if (idx === meme.selectedLineIdx) {
@@ -179,6 +180,13 @@ function onSelectImg(elImg, imgUrl) {
     renderMeme()
 }
 
+function onSelectSavedMeme(memeId){
+    document.getElementById("main-gallery").classList.add('hidden')
+    document.getElementById("main-saved").classList.add('hidden')
+    document.getElementById("main-editor").classList.remove('hidden')
+    renderMeme()
+}
+
 function onGetRandomMeme() {
     const imgs = getImgs()
     const elImg = imgs[getRandomIntInclusive(1, imgs.length)]
@@ -188,7 +196,6 @@ function onGetRandomMeme() {
 
     setImg(elImg)
     renderMeme()
-
 }
 
 function switchToGallery() {
@@ -201,10 +208,6 @@ function switchToGallery() {
 function onResetMeme() {
     resetMeme()
 }
-
-// function onHandleSaveBtn() {
-//     handleSaveBtn()
-// }
 
 function onAlignLeft() {
     alignLeft()
@@ -249,10 +252,9 @@ function onGetImgURL(imgId) {
 }
 
 function onSaveMeme() {
-    // var id = makeId()
-    // const canvasUrl = gElCanvas.toDataURL()
-    saveMeme()
-    // console.log(JSON.stringify.canvasUrl);
+    const savedMeme = gElCanvas.toDataURL()
+    console.log(savedMeme);
+    saveMeme(savedMeme)
 }
 
 
@@ -272,7 +274,9 @@ function onDecreaseLineSize() {
 }
 
 function onChangeLineColor(color) {
+    //CHANGE TEXT COLOR
     changeLineColor(color)
+    //CHANGE COLOR SELECTOR ICON LIVE
     const elColorPicker = document.querySelector('.flaticon-color-palette')
     elColorPicker.style.color = color
     renderMeme()

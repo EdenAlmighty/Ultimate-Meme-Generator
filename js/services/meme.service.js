@@ -37,11 +37,16 @@ var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2, 'men': 10 }
 function getNextImgId() {
     return gImgs.length += 1
 }
+function getSavedMemes() {
+    return gSavedMemes
+}
 
 function _createMeme() {
     gMeme = {
+        id: makeId(),
         selectedImgId: 0,
         selectedLineIdx: 0,
+        dataURL: '',
         lines: [
             {
                 txt: 'I sometimes eat Falafel',
@@ -173,18 +178,26 @@ function resetMeme() {
     _createMeme()
 }
 
-// function handleSaveBtn() {
-//     _saveMeme()
-//     // _saveCanvas(canvasURL)
-// }
-
-function saveMeme() {
-    gSavedMemes.push(gMeme.toDataUrl)
-
-    saveToStorage(SAVED_DB, gSavedMemes)
+function setSavedMeme(memeId) {
+    const savedMeme = gSavedMemes.find(savedMeme => savedMeme.id === memeId)
+    gMeme = savedMeme
 }
 
-// function _saveCanvas(canvasURL) {
-//     gSavedMems.push({ canvasURL })
-//     saveToStorage(SAVED_DB, 'savedDB')
-// }
+function saveMeme() {
+    const previousMeme = gSavedMemes.find(savedMeme => savedMeme.id === gMeme.id)
+    if (previousMeme) {
+        previousMeme.dataURL = gMeme.dataURL
+        _saveMemeToStorage()
+    } else {
+        gSavedMemes.push(gMeme)
+        _saveMemeToStorage()
+    }
+}
+
+function setDataURL(dataURL) {
+    gMeme.dataURL = dataURL
+}
+
+function _saveMemeToStorage() {
+    saveToStorage(SAVED_DB, gSavedMemes)
+}
