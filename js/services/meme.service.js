@@ -3,17 +3,13 @@
 
 const MEME_DB = 'memeDB'
 const IMG_DB = 'imgDB'
+const SAVED_DB = 'savedDB'
+
 let gFilterBy = ''
 
-var gSavedMems = loadFromStorage(IMG_DB) || {}
+const gSavedMemes = loadFromStorage(SAVED_DB) || []
 
-
-
-
-var gMeme = loadFromStorage(MEME_DB) || _createMeme()
-// _createMeme()
-
-
+var gMeme = _createMeme()
 
 var gImgs = [
     { id: 0, url: 'img/1.jpg', keywords: ['funny', 'men'] },
@@ -38,8 +34,6 @@ var gImgs = [
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2, 'men': 10 }
 
-
-
 function getNextImgId() {
     return gImgs.length += 1
 }
@@ -59,21 +53,9 @@ function _createMeme() {
                 isDrag: false,
                 align: 'center',
                 font: 'impact'
-            },
-            {
-                txt: 'Yossi\'s house',
-                size: 50,
-                color: 'white',
-                stroke: 'black',
-                x: 150,
-                y: 150,
-                isDrag: false,
-                align: 'center',
-                font: 'impact'
             }
         ]
     }
-    // saveToStorage(MEME_DB, gMeme)
     return gMeme
 }
 
@@ -96,8 +78,6 @@ function addLine() {
     gMeme.lines.push({ txt: txt, size: size, color: color, x: 50, y: 50, font })
     if (gMeme.selectedLineIdx <= 1) gMeme.selectedLineIdx = 2
     else gMeme.selectedLineIdx++
-    console.log(gMeme.lines);
-    renderText()
 }
 
 // TEXT IS MEASURED FROM THE CENTER. TO ALIGN LEFT I NEED TO SET RIGHT
@@ -155,8 +135,6 @@ function getImgs() {
     return gImgs.filter(img =>
         img.keywords.some(keywords => keywords.includes(gFilterBy))
     )
-
-    // console.log(gImgs);
 }
 
 function setFilterBy(filterBy) {
@@ -166,7 +144,6 @@ function setFilterBy(filterBy) {
 function getFilterMap() {
     return gKeywordSearchCountMap
 }
-
 
 function increaseLineSize() {
     gMeme.lines[gMeme.selectedLineIdx].size += 1
@@ -181,7 +158,6 @@ function decreaseLineSize() {
 
 function changeLineColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color
-    renderMeme()
 }
 
 function getSelectedLine() {
@@ -190,21 +166,25 @@ function getSelectedLine() {
 
 function setLineText(newTxt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = newTxt
-    // resizeCanvas()
-    // console.log(newTxt);
     console.log(newTxt);
 }
 
-function handleSaveBtn() {
-    _saveMeme()
-    saveCanvas(id, canvasURL)
+function resetMeme() {
+    _createMeme()
 }
 
-function _saveMeme() {
-    saveToStorage(MEME_DB, gMeme)
+// function handleSaveBtn() {
+//     _saveMeme()
+//     // _saveCanvas(canvasURL)
+// }
+
+function saveMeme() {
+    gSavedMemes.push(gMeme.toDataUrl)
+
+    saveToStorage(SAVED_DB, gSavedMemes)
 }
 
-function saveCanvas(id, canvasURL) {
-    gSavedMems.push({ id, canvasURL })
-    saveToStorage(IMG_DB, gImgs)
-}
+// function _saveCanvas(canvasURL) {
+//     gSavedMems.push({ canvasURL })
+//     saveToStorage(SAVED_DB, 'savedDB')
+// }

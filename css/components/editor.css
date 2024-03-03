@@ -2,33 +2,33 @@
     box-sizing: border-box;
 }
 
-.controls-container {
-    background-color: rgb(44, 44, 44);
+/* .controls-container {
+    background-color: rgb(54, 54, 54);
     border-radius: 2em;
-    padding: 1em;
     margin-left: auto;
     margin-right: auto;
-    justify-items: center;
-}
+    justify-content: center;
+    row-gap: 1em;
+    width: 100%;
+} */
 
-.text-input {
-    display: flex;
-    flex-grow: 1;
-    padding: 1em;
-    border-radius: 2em;
-    text-align: center;
-}
+
 
 .style-container {
+    max-width: 100%;
     grid-template-areas:
         "a b c d e"
         "f f f g h";
     background-color: rgb(98, 107, 114);
-
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
     padding: 1em;
-    gap: .5em;
+    gap: 1.2em;
+    border-radius: 1em;
+}
+
+.edit-btn-container {
+    display: flex;
+    margin: 1em;
+    gap: 1em;
 }
 
 .grow {
@@ -55,7 +55,7 @@
     grid-area: f;
 }
 
-.add-underline {
+.save {
     grid-area: g;
 }
 

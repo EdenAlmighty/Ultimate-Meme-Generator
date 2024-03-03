@@ -1,5 +1,4 @@
 /* GRID HELPERS */
-
 .grid {
     display: grid;
     margin-left: auto;
@@ -25,7 +24,6 @@
 .main-layout>*.full {
     grid-column: 1 / -1;
 }
-
 
 
 /* FLEX HELPERS */

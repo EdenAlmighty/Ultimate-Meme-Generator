@@ -11,96 +11,104 @@
 </head>
 
 <body class="main-layout " onload="onInit()">
-    <main class="main-layout">
-        <div class="main-screen " onclick="toggleMenu()"></div>
+    <div class="main-screen " onclick="toggleMenu()"></div>
 
-        <header class="main-header full main-layout">
-            <div class="header-container flex align-center space-between ">
-                <div onclick="switchToGallery()" class="logo">Ultimate MEME Generator</div>
+    <header class="main-header full main-layout">
+        <div class="header-container flex align-center space-between ">
+            <div onclick="switchToGallery()" class="logo">Ultimate MEME Generator</div>
 
-                <div class="hamburger-menu" onclick="toggleMenu()" type="button">
-                    <div class="ham-bar bar-top"></div>
-                    <div class="ham-bar bar-mid"></div>
-                    <div class="ham-bar bar-bottom"></div>
-                </div>
-
-                <nav class="main-nav">
-                    <ul class="main-nav-list flex clean-list" onclick="toggleMenu()">
-                        <li><a href="#" class="gallery-nav" onclick="switchToGallery()">Gallery</a></li>
-                        <li><a href="#" class="saved-nav" onclick="switchToSaved()">Saved Memes</a></li>
-                    </ul>
-                </nav>
-
+            <div class="hamburger-menu" onclick="toggleMenu()" type="button">
+                <div class="ham-bar bar-top"></div>
+                <div class="ham-bar bar-mid"></div>
+                <div class="ham-bar bar-bottom"></div>
             </div>
 
-        </header>
-        <div id="main-gallery" class="main-gallery">
-            <h2>Gallery</h2>
-            <div class="key-words flex align center" >
-            
-            </div>
-            <form class="form flex space-around">
-                <input type="search" placeholder="Search" list="keywords" oninput="onSetFilterBy(this.value)"> 
+            <nav class="main-nav">
+                <ul class="main-nav-list flex clean-list" onclick="toggleMenu()">
+                    <li><a href="#" class="gallery-nav" onclick="switchToGallery()">Gallery</a></li>
+                    <li><a href="#" class="saved-nav" onclick="switchToSaved()">Saved Memes</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+    <div id="main-gallery" class="main-gallery">
+        <h2>Gallery</h2>
+        <div class="key-words flex align center">
+
+        </div>
+        <section class="search-actions-container flex align-center space-around">
+            <form class="form">
+                <input type="search" placeholder="Search" list="keywords" oninput="onSetFilterBy(this.value)">
             </form>
             <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
             <button class="btn" onclick="onGetRandomMeme()">I'm Flexable!</button>
-            <section class="gallery-container grid">
-            </section>
-        </div>
+        </section>
+        <section class="gallery-container grid">
+        </section>
+    </div>
 
-        <div id="main-saved" class="main-saved hidden">
-            <h2>Saved Memes</h2>
-            <section class="saved-container grid"></section>
-        </div>
+    <div id="main-saved" class="main-saved hidden">
+        <h2>Saved Memes</h2>
+        <section class="saved-container grid"></section>
+    </div>
 
-        <div id="main-editor" class="main-editor hidden">
-            <h2>MEME Editor</h2>
-            <div class="editor-layout grid  ">
+    <div id="main-editor" class="main-editor hidden">
+        <h2>MEME Editor</h2>
+        <div class="editor-layout grid  ">
 
-                <div class="canvas-container">
-                    <canvas height="540px" width="470px"></canvas>
-                </div>
-                <div class="controls-container flex align-center columns space-around">
-                    <div class="inputs-container align-center columns space-around">
-                        <input class="text-input" id="text-input" oninput="onSetLineTxt(this.value)" type="text"
-                            placeholder="ADD TEXT">
-                    </div>
-                    <div class="edit-btn-container ">
-                        <div class="switch-text" onclick="onSwitchLine()"><i class="flaticon-up-down"></i></div>
-                        <div class="add-text" onclick="onAddLine()"><i class="flaticon-plus"></i></div>
-                        <div class="delete-text" onclick="onDeleteLine()"><i class="flaticon-remove"></i></div>
-                    </div>
-
-                    <div class="style-container grid ">
-                        <div class="grow" onclick="onIncreaseLineSize()"><i class="flaticon-plus"></i></div>
-                        <div class="shrink" onclick="onDecreaseLineSize()"><i class="flaticon-minus-button"></i></div>
-                        <div class="align-left" onclick="onAlignLeft()"><i class="flaticon-align-left"></i></div>
-                        <div class="align-text-center" onclick="onAlignCenter()"><i class="flaticon-format"></i></div>
-                        <div class="align-right" onclick="onAlignRight()"><i class="flaticon-align-right"></i></div>
-
-                        <select class="btn change-font" name="change-font" onchange="onChangeFont(this.value)">
-                            <option value="Impact">Impact</option>
-                            <option value="Arial">Arial</option>
-                            <option value="Times New Roman">Times New Roman</option>
-                        </select>
-                        <button class="btn save" onclick="onHandleSaveBtn()">Save MEME</button>
-                        <button class="btn color-picker"><input oninput="onChangeLineColor(this.value)" type="color"
-                                name="color-picker" id="color-picker"></button>
-                    </div>
-
-                    <div class="share-container ">
-                        <button class="btn share" onclick="onUploadImg()">Upload to Facebook</button>
-                        <button class="btn download"><a href="#" class="btn download" onclick="downloadImg(this)"
-                                download="my-img">Download MEME</a></button>
-                    </div>
-                </div>
-
+            <div class="canvas-container">
+                <canvas height="540px" width="470px"></canvas>
             </div>
+            <div class="controls-container flex align-center columns ">
+                <div class="inputs-container align-center columns space-around">
+                    <input class="text-input" id="text-input" oninput="onSetLineTxt(this.value)" type="text"
+                        placeholder="ADD TEXT">
+                </div>
+                <div class="edit-btn-container ">
+                    <div class="switch-text" onclick="onSwitchLine()"><i class="flaticon-exchange"></i></div>
+                    <div class="add-text" onclick="onAddLine()"><i class="flaticon-plus"></i></div>
+                    <div class="delete-text" onclick="onDeleteLine()"><i class="flaticon-bin"></i></div>
+                </div>
+
+                <div class="style-container grid ">
+                    <div class="grow" onclick="onIncreaseLineSize()"><i class="flaticon-zoom"></i></div>
+                    <div class="shrink" onclick="onDecreaseLineSize()"><i class="flaticon-zoom-out"></i></div>
+                    <div class="align-left" onclick="onAlignLeft()"><i class="flaticon-align-left"></i></div>
+                    <div class="align-text-center" onclick="onAlignCenter()"><i class="flaticon-format"></i></div>
+                    <div class="align-right" onclick="onAlignRight()"><i class="flaticon-align-right"></i></div>
+
+                    <select class="btn change-font" name="change-font" onchange="onChangeFont(this.value)">
+                        <option value="Impact">Impact</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                    </select>
+                    <div class="btn save" onclick="onSaveMeme()"><i class="flaticon-diskette"></i></div>
+
+                    <label for="color-picker" class="color-picker">
+                        <i style="color:'';" class="flaticon-color-palette"></i>
+                        <input oninput="onChangeLineColor(this.value)" type="color" name="color-picker"
+                            id="color-picker">
+                    </label>
+
+
+
+
+                </div>
+
+                <div class="share-container ">
+                    <button class="btn share" onclick="onUploadImg()">Upload to Facebook</button>
+                    <button class="btn download"><a href="#" class="btn download" onclick="downloadImg(this)"
+                            download="my-img">Download MEME</a></button>
+                </div>
+            </div>
+
         </div>
+    </div>
 
 
 
-    </main>
 
 
 

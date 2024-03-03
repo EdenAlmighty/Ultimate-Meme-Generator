@@ -2,11 +2,11 @@ $flaticon_meme_gen-font: "flaticon_meme_gen";
 
 @font-face {
     font-family: $flaticon_meme_gen-font;
-    src: url("./flaticon_meme_gen.woff2?ea53a0cc929115d1f2d12fc9018e5fd6") format("woff2"),
-url("./flaticon_meme_gen.woff?ea53a0cc929115d1f2d12fc9018e5fd6") format("woff"),
-url("./flaticon_meme_gen.eot?ea53a0cc929115d1f2d12fc9018e5fd6#iefix") format("embedded-opentype"),
-url("./flaticon_meme_gen.ttf?ea53a0cc929115d1f2d12fc9018e5fd6") format("truetype"),
-url("./flaticon_meme_gen.svg?ea53a0cc929115d1f2d12fc9018e5fd6#flaticon_meme_gen") format("svg");
+    src: url("./flaticon_meme_gen.woff2?93472b42a67cd6b718522f4dc146cdb4") format("woff2"),
+url("./flaticon_meme_gen.woff?93472b42a67cd6b718522f4dc146cdb4") format("woff"),
+url("./flaticon_meme_gen.eot?93472b42a67cd6b718522f4dc146cdb4#iefix") format("embedded-opentype"),
+url("./flaticon_meme_gen.ttf?93472b42a67cd6b718522f4dc146cdb4") format("truetype"),
+url("./flaticon_meme_gen.svg?93472b42a67cd6b718522f4dc146cdb4#flaticon_meme_gen") format("svg");
 }
 
 i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
@@ -21,21 +21,20 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
 }
 
 $flaticon_meme_gen-map: (
-    "minus-button": "\f101",
-    "plus": "\f102",
-    "align-left": "\f103",
-    "format": "\f104",
-    "align-right": "\f105",
-    "remove": "\f106",
-    "up-down": "\f107",
+    "align-left": "\f101",
+    "format": "\f102",
+    "align-right": "\f103",
+    "minimize-sign": "\f104",
+    "plus": "\f105",
+    "bin": "\f106",
+    "download": "\f107",
+    "diskette": "\f108",
+    "exchange": "\f109",
+    "color-palette": "\f10a",
+    "zoom": "\f10b",
+    "zoom-out": "\f10c",
 );
 
-.flaticon-minus-button:before {
-    content: map-get($flaticon_meme_gen-map, "minus-button");
-}
-.flaticon-plus:before {
-    content: map-get($flaticon_meme_gen-map, "plus");
-}
 .flaticon-align-left:before {
     content: map-get($flaticon_meme_gen-map, "align-left");
 }
@@ -45,9 +44,30 @@ $flaticon_meme_gen-map: (
 .flaticon-align-right:before {
     content: map-get($flaticon_meme_gen-map, "align-right");
 }
-.flaticon-remove:before {
-    content: map-get($flaticon_meme_gen-map, "remove");
+.flaticon-minimize-sign:before {
+    content: map-get($flaticon_meme_gen-map, "minimize-sign");
 }
-.flaticon-up-down:before {
-    content: map-get($flaticon_meme_gen-map, "up-down");
+.flaticon-plus:before {
+    content: map-get($flaticon_meme_gen-map, "plus");
+}
+.flaticon-bin:before {
+    content: map-get($flaticon_meme_gen-map, "bin");
+}
+.flaticon-download:before {
+    content: map-get($flaticon_meme_gen-map, "download");
+}
+.flaticon-diskette:before {
+    content: map-get($flaticon_meme_gen-map, "diskette");
+}
+.flaticon-exchange:before {
+    content: map-get($flaticon_meme_gen-map, "exchange");
+}
+.flaticon-color-palette:before {
+    content: map-get($flaticon_meme_gen-map, "color-palette");
+}
+.flaticon-zoom:before {
+    content: map-get($flaticon_meme_gen-map, "zoom");
+}
+.flaticon-zoom-out:before {
+    content: map-get($flaticon_meme_gen-map, "zoom-out");
 }

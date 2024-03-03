@@ -2,8 +2,8 @@
     /* --primary1: #22252C */
     --primary-base: #ffffff;
     --primary-1: #292929;
-    --primary-text: #4F4E4E;
-    --secondary-text: #606060;
+    --btn-hover: #399788;
+    --btn-active: #286b60;
     
     --bar-width: 60px
     --bar-height: 8px

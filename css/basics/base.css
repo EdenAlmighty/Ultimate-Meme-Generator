@@ -6,15 +6,16 @@ body {
     background-color: var(--primary-1);
     color: var(--primary-base);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 200;
     letter-spacing: 0.04em;
+    margin: 0;
 }
 
-h1,
-h2,
-h3 {
-    margin: 0;
+h2 {
+    font-size: 5em;
+    font-weight: 100;
     text-align: center;
-    margin: .2em;
+    margin: .8em;
 }
 
 img {
@@ -25,8 +26,6 @@ img {
     transition: 0.2s;
     
 }
-
-
 
 a, .logo {
     text-decoration: none;

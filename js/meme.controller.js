@@ -22,7 +22,6 @@ function onInit() {
 
         meme.lines.forEach(function (line, idx) {
             if (checkClick(meme, line, x, y)) {
-                console.log('yes', idx);
             }
         })
     })
@@ -56,7 +55,7 @@ function checkClick(ev) {
             meme.selectedLineIdx = idx
             lineSelected = true
             renderText(line)
-            renderMeme()
+
         }
     })
 
@@ -67,6 +66,7 @@ function checkClick(ev) {
         document.body.style.cursor = 'grabbing'
         setLineDrag(lineSelected)
     }
+    // renderMeme()
 }
 
 
@@ -91,7 +91,6 @@ function onUp() {
     document.body.style.cursor = 'default'
 }
 
-
 function renderMeme() {
 
     let imgs = onGetImgs()
@@ -104,8 +103,8 @@ function renderMeme() {
     img.src = meme.url
     img.onload = () => {
         coverCanvasWithImg(img)
+
         meme.lines.forEach((line, idx) => {
-            console.log(line);
             renderText(line)
             if (idx === meme.selectedLineIdx) {
                 const metrics = gCtx.measureText(line.txt)
@@ -170,13 +169,14 @@ function onSelectImg(elImg, imgUrl) {
     document.getElementById("main-gallery").classList.add('hidden')
     document.getElementById("main-saved").classList.add('hidden')
     document.getElementById("main-editor").classList.remove('hidden')
-    
-    setImg(elImg, imgUrl)
-    renderMeme()
 
-    resizeCanvas()
+    setImg(elImg, imgUrl)
+
     document.getElementById('text-input').value = ''
     document.getElementById('text-input').focus()
+
+    resizeCanvas()
+    renderMeme()
 }
 
 function onGetRandomMeme() {
@@ -188,12 +188,23 @@ function onGetRandomMeme() {
 
     setImg(elImg)
     renderMeme()
-    resizeCanvas()
+
 }
 
-function onHandleSaveBtn() {
-    handleSaveBtn()
+function switchToGallery() {
+    document.getElementById("main-gallery").classList.remove('hidden')
+    document.getElementById("main-editor").classList.add('hidden')
+    document.getElementById("main-saved").classList.add('hidden')
+    onResetMeme()
 }
+
+function onResetMeme() {
+    resetMeme()
+}
+
+// function onHandleSaveBtn() {
+//     handleSaveBtn()
+// }
 
 function onAlignLeft() {
     alignLeft()
@@ -238,12 +249,13 @@ function onGetImgURL(imgId) {
 }
 
 function onSaveMeme() {
-    var id = makeId()
-    const canvasUrl = gElCanvas.toDataURL()
-    saveCanvas(id, canvasUrl)
-    console.log(canvasUrl);
-
+    // var id = makeId()
+    // const canvasUrl = gElCanvas.toDataURL()
+    saveMeme()
+    // console.log(JSON.stringify.canvasUrl);
 }
+
+
 function onAddLine() {
     addLine()
     renderMeme()
@@ -261,6 +273,9 @@ function onDecreaseLineSize() {
 
 function onChangeLineColor(color) {
     changeLineColor(color)
+    const elColorPicker = document.querySelector('.flaticon-color-palette')
+    elColorPicker.style.color = color
+    renderMeme()
 }
 
 function onGetMeme() {
@@ -270,7 +285,6 @@ function onGetMeme() {
 function onSetLineTxt(newTxt) {
     setLineText(newTxt)
     renderMeme()
-    // document.getElementById('text-input').value = ''
 }
 
 function coverCanvasWithImg(elImg) {
