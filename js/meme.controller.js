@@ -45,9 +45,9 @@ function checkClick(ev) {
     if (lineSelected) {
         const elInput = document.querySelector('.text-input')
         elInput.value = meme.lines[meme.selectedLineIdx].txt
-        elInput.focus()
         document.body.style.cursor = 'grabbing'
         setLineDrag(lineSelected)
+        elInput.value.focus()
     }
 }
 
@@ -210,6 +210,7 @@ function onSwitchLine() {
     switchLine()
     renderMeme()
     document.getElementById('text-input').value = ''
+    document.getElementById('text-input').focus()
 }
 
 function onGetImgIdx(imgId) {

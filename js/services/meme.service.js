@@ -84,12 +84,13 @@ function deleteLine() {
 }
 
 function addLine() {
-    var txt = gMeme.lines[gMeme.selectedLineIdx].txt
+    // var txt = gMeme.lines[gMeme.selectedLineIdx].txt
+    var txt = 'New Text'
     var size = gMeme.lines[gMeme.selectedLineIdx].size
     var color = gMeme.lines[gMeme.selectedLineIdx].color
     var font = gMeme.lines[gMeme.selectedLineIdx].font
 
-    gMeme.lines.push({ txt: txt, size: size, color: color, x: 50, y: 50, font })
+    gMeme.lines.push({ txt: txt, size: size, color: color, x: 200, y: 200, font })
     if (gMeme.selectedLineIdx <= 1) gMeme.selectedLineIdx = 2
     else gMeme.selectedLineIdx++
 }
