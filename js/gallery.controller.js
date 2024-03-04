@@ -19,13 +19,12 @@ function renderSavedMemes() {
     const savedMemes = getSavedMemes()
 
     const savedHTML = savedMemes.map(meme => {
-
-    return `<img id="makeId()"
+        return `<img id="makeId()"
      src="${meme.dataURL}" 
      alt="${meme.id}" 
      onclick="onEditSavedMeme('${meme.id}')">`
     })
-    
+
     const elSavedMemes = document.querySelector('.saved-container')
     elSavedMemes.innerHTML = savedHTML.join('')
 }

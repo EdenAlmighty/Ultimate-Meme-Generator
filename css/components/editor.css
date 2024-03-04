@@ -2,18 +2,6 @@
     box-sizing: border-box;
 }
 
-/* .controls-container {
-    background-color: rgb(54, 54, 54);
-    border-radius: 2em;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    row-gap: 1em;
-    width: 100%;
-} */
-
-
-
 .style-container {
     max-width: 100%;
     grid-template-areas:
@@ -21,7 +9,7 @@
         "f f f g h";
     background-color: rgb(98, 107, 114);
     padding: 1em;
-    gap: 1.2em;
+    gap: 1em;
     border-radius: 1em;
 }
 

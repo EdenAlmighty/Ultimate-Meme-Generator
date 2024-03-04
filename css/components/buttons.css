@@ -24,12 +24,16 @@ input[type="color"]::-webkit-color-swatch {
 
 .share {
     background-color: #4267B2;
-    color: white;
+    color: var(--primary-base);
 }
 
 .download {
     background-color: green;
-    color: white;
+    color: var(--primary-base);
+}
+
+.change-font {
+    border-radius: .6em;
 }
 
 .hamburger-menu {
@@ -44,7 +48,7 @@ input[type="color"]::-webkit-color-swatch {
 .ham-bar {
     width: 70%;
     height: 4px;
-    background-color: white;
+    background-color: var(--primary-base);
     border-radius: 25px;
     position: absolute;
     top: 50%;
@@ -113,3 +117,114 @@ i.flaticon-bin:active {
     transform: scale(1);
 }
 
+.box {
+    position: relative;
+    display: inline-block;
+}
+
+.box i {
+    position: absolute;
+    font-size: 1.5em;
+    border-radius: 2em;
+    color: var(--btn-hover);
+    right: .5em;
+    padding: 0.3em;
+    top: 50%;
+    transition: 0.2s;
+    transform: translateY(-48%);
+}
+
+.box i {
+    pointer-events: none;
+}
+
+.search {
+    position: relative;
+}
+
+::placeholder {
+    color: var(--primary-base);
+}
+
+.search input[type="search"],
+.flexible-btn,
+.upload-img-btn {
+    border: none;
+    border-color: var(--primary-base);
+    background-color: var(--btn-hover);
+    color: var(--primary-base);
+    box-shadow: inset var(--btn-active) 1px 1px 4px 3px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-right: 30px;
+    font-size: 1.2em;
+    padding: 1em;
+    border-radius: 2em;
+    transition: 0.2s;
+}
+
+.search input[type="search"]:hover,
+.upload-img-btn:hover,
+.flexible-btn:hover {
+    cursor: pointer;
+    transform: scale(1.1)
+}
+
+.search input[type="search"]:active,
+.upload-img-btn:active,
+.flexible-btn:active {
+    transform: scale(1)
+}
+
+.upload-img-btn {
+    position: relative;
+}
+
+.upload-img-btn i {
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-48%);
+    font-size: 1.2em;
+    background-color: var(--btn-hover);
+    color: var(--primary-base);
+}
+
+.upload-img-btn input[type="file"] {
+    padding-right: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+
+.flexible-btn {
+    animation: rainbow 6s linear alternate infinite;
+}
+
+@keyframes rainbow {
+    0% {
+        background-color: #6666ff;
+    }
+
+    17% {
+        background-color: #0099ff;
+    }
+
+    34% {
+        background-color: #2ab12a;
+    }
+
+    51% {
+        background-color: #cd3e86;
+    }
+
+    68% {
+        background-color: #6666ff;
+    }
+
+    85% {
+        background-color: indigo;
+    }
+
+    100% {
+        background-color: purple;
+    }
+}

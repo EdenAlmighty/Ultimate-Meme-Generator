@@ -9,7 +9,6 @@ function downloadImg(elLink) {
 function onDownloadCanvas(elLink) {
     elLink.href = '#'       // Clear the link
     const dataUrl = gElCanvas.toDataURL()
-
     elLink.href = dataUrl
     elLink.download = 'my-img'
 }

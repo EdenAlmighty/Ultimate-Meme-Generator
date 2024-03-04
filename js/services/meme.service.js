@@ -4,11 +4,9 @@
 const MEME_DB = 'memeDB'
 const IMG_DB = 'imgDB'
 const SAVED_DB = 'savedDB'
-
-let gFilterBy = ''
-
 const gSavedMemes = loadFromStorage(SAVED_DB) || []
 
+let gFilterBy = ''
 var gMeme = _createMeme()
 
 var gImgs = [
@@ -30,6 +28,16 @@ var gImgs = [
     { id: 15, url: 'img/16.jpg', keywords: ['funny', 'men'] },
     { id: 16, url: 'img/17.jpg', keywords: ['funny', 'men'] },
     { id: 17, url: 'img/18.jpg', keywords: ['funny', 'toy'] },
+    { id: 18, url: 'img/19.jpg', keywords: ['funny', 'cat'] },
+    { id: 19, url: 'img/20.jpg', keywords: ['funny', 'cute'] },
+    { id: 20, url: 'img/21.jpg', keywords: ['funny', 'men'] },
+    { id: 21, url: 'img/22.jpg', keywords: ['funny', 'men'] },
+    { id: 22, url: 'img/23.jpg', keywords: ['funny', 'men'] },
+    { id: 23, url: 'img/24.jpg', keywords: ['funny', 'men'] },
+    { id: 24, url: 'img/25.jpg', keywords: ['funny', 'men'] },
+    { id: 25, url: 'img/26.jpg', keywords: ['funny', 'men'] },
+    { id: 26, url: 'img/27.jpg', keywords: ['funny', 'men'] },
+    { id: 27, url: 'img/28.jpg', keywords: ['funny', 'men'] },
 ]
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2, 'men': 10 }
@@ -37,6 +45,7 @@ var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2, 'men': 10 }
 function getNextImgId() {
     return gImgs.length += 1
 }
+
 function getSavedMemes() {
     return gSavedMemes
 }
@@ -50,11 +59,11 @@ function _createMeme() {
         lines: [
             {
                 txt: 'I sometimes eat Falafel',
-                size: 30,
+                size: 40,
                 color: 'white',
-                stroke: 'black',
-                x: 100,
-                y: 100,
+                // stroke: 'black',
+                x: 300,
+                y: 300,
                 isDrag: false,
                 align: 'center',
                 font: 'impact'
@@ -89,9 +98,11 @@ function addLine() {
 function alignLeft() {
     gMeme.lines[gMeme.selectedLineIdx].align = 'right'
 }
+
 function alignCenter() {
     gMeme.lines[gMeme.selectedLineIdx].align = 'center'
 }
+
 function alignRight() {
     gMeme.lines[gMeme.selectedLineIdx].align = 'left'
 }
@@ -116,6 +127,7 @@ function switchLine() {
 function setImg(elImg, imgUrl) {
     gMeme.selectedImgId = elImg
 }
+
 function getRandomMeme() {
     const randMemeIdx = getRandomIntInclusive(0, gImgs.length)
     gMeme.selectedImgId = randMemeIdx

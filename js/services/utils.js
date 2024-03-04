@@ -31,7 +31,6 @@ function addMouseListeners() {
 }
 
 function addTouchListeners() {
-
     gElCanvas.addEventListener('touchstart', checkClick)
     gElCanvas.addEventListener('touchmove', onMove)
     gElCanvas.addEventListener('touchend', onUp)
@@ -65,7 +64,6 @@ function toggleMenu() {
     const hamMenu = document.querySelector('.hamburger-menu')
     hamMenu.classList.toggle('active')
 }
-
 
 function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min

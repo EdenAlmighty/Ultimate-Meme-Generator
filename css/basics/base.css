@@ -24,10 +24,10 @@ img {
     cursor: pointer;
     padding: .3em;
     transition: 0.2s;
-    
 }
 
-a, .logo {
+a,
+.logo {
     text-decoration: none;
     cursor: pointer;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;

@@ -38,10 +38,12 @@
 .flex.space-between {
     justify-content: space-between;
 }
+
 .flex.space-around {
     justify-content: space-around;
 }
-.flex.columns{
+
+.flex.columns {
     flex-direction: column;
 }
 

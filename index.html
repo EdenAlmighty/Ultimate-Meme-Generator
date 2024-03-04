@@ -39,11 +39,17 @@
 
         </div>
         <section class="search-actions-container flex align-center space-around">
-            <form class="form">
-                <input type="search" placeholder="Search" list="keywords" oninput="onSetFilterBy(this.value)">
-            </form>
-            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
-            <button class="btn" onclick="onGetRandomMeme()">I'm Flexable!</button>
+            <div class="box">
+                <form class="search">
+                    <input type="search" placeholder="Search" list="keywords" oninput="onSetFilterBy(this.value)">
+                </form>
+                <i class="flaticon-magnifying-glass"></i>
+            </div>
+            <div class="upload-img-btn">
+                <input type="file" class="" name="image" onchange="onImgInput(event)" accept="image/*" />
+                <i class="flaticon-download"></i>
+            </div>
+            <button class="flexible-btn" onclick="onGetRandomMeme()">I'm Flexable!</button>
         </section>
         <section class="gallery-container grid">
         </section>
@@ -99,7 +105,7 @@
 
                 <div class="share-container ">
                     <button class="btn share" onclick="onUploadImg()">Upload to Facebook</button>
-                    <button class="btn download"><a href="#" class="btn download" onclick="downloadImg(this)"
+                    <button class="btn download"><a href="#" class="btn download " onclick="onDownloadMeme(this)"
                             download="my-img">Download MEME</a></button>
                 </div>
             </div>

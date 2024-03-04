@@ -11,11 +11,11 @@
 
 @font-face {
     font-family: "flaticon_meme_gen";
-    src: url("./flaticon_meme_gen.woff2?93472b42a67cd6b718522f4dc146cdb4") format("woff2"),
-url("./flaticon_meme_gen.woff?93472b42a67cd6b718522f4dc146cdb4") format("woff"),
-url("./flaticon_meme_gen.eot?93472b42a67cd6b718522f4dc146cdb4#iefix") format("embedded-opentype"),
-url("./flaticon_meme_gen.ttf?93472b42a67cd6b718522f4dc146cdb4") format("truetype"),
-url("./flaticon_meme_gen.svg?93472b42a67cd6b718522f4dc146cdb4#flaticon_meme_gen") format("svg")
+    src: url("./flaticon_meme_gen.woff2?f76a3ef2a34dbd3666c9fda080d7dc1a") format("woff2"),
+url("./flaticon_meme_gen.woff?f76a3ef2a34dbd3666c9fda080d7dc1a") format("woff"),
+url("./flaticon_meme_gen.eot?f76a3ef2a34dbd3666c9fda080d7dc1a#iefix") format("embedded-opentype"),
+url("./flaticon_meme_gen.ttf?f76a3ef2a34dbd3666c9fda080d7dc1a") format("truetype"),
+url("./flaticon_meme_gen.svg?f76a3ef2a34dbd3666c9fda080d7dc1a#flaticon_meme_gen") format("svg")
 }
 
 i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
@@ -64,5 +64,8 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
 }
 .flaticon-zoom-out:before {
     content: "\f10c";
+}
+.flaticon-magnifying-glass:before {
+    content: "\f10d";
 }
 

@@ -1,7 +1,7 @@
-
 /* MAIN LAYOUT */
 
-.gallery-nav, .saved-nav{
+.gallery-nav,
+.saved-nav {
     border: none;
     color: white;
     font-size: 1.2em;
@@ -9,7 +9,7 @@
 }
 
 /* GALLERY LAYOUT */
-.saved-container{
+.saved-container {
     height: 23vh;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     row-gap: 10px;
@@ -25,7 +25,7 @@ canvas {
     background-color: white;
 }
 
-.canvas-container{
+.canvas-container {
     width: 100%;
     grid-column: 2;
     margin-left: auto;

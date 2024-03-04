@@ -5,27 +5,11 @@ let gCtx
 let gStartPos
 let meme
 
-// let gCurrMeme
-
 function onInit() {
     renderGallery()
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     addListeners()
-
-    const meme = onGetMeme()
-    const { lines } = meme
-    gElCanvas.addEventListener('click', function (event) {
-        let rect = gElCanvas.getBoundingClientRect()
-        let x = event.clientX - rect.left
-        let y = event.clientY - rect.top
-
-        meme.lines.forEach(function (line, idx) {
-            if (checkClick(meme, line, x, y)) {
-            }
-        })
-    })
-
     resizeCanvas()
 }
 
@@ -55,7 +39,6 @@ function checkClick(ev) {
             meme.selectedLineIdx = idx
             lineSelected = true
             renderText(line)
-
         }
     })
 
@@ -66,9 +49,7 @@ function checkClick(ev) {
         document.body.style.cursor = 'grabbing'
         setLineDrag(lineSelected)
     }
-    // renderMeme()
 }
-
 
 function onMove(ev) {
     meme = getMeme()
@@ -82,7 +63,6 @@ function onMove(ev) {
     moveText(dx, dy, gElCanvas)
 
     gStartPos = pos
-
     renderMeme()
 }
 
@@ -92,11 +72,10 @@ function onUp() {
 }
 
 function renderMeme() {
-
     let imgs = onGetImgs()
     console.log(imgs);
     const meme = onGetMeme()
-    if(meme.dataURL) meme.url = meme.dataURL
+    if (meme.dataURL) meme.url = meme.dataURL
     else meme.url = imgs[meme.selectedImgId.id].url
 
     const img = new Image()
@@ -124,7 +103,7 @@ function renderMeme() {
                 }
                 line.boundingBox = bounds
                 console.log(line);
-                gCtx.strokeStyle = 'whitesmoke'
+                gCtx.strokeStyle = 'grey'
                 gCtx.lineWidth = 2
                 gCtx.strokeRect(bounds.left, bounds.top, width, height)
             }
@@ -150,7 +129,6 @@ function onMoveArrows(ev) {
     renderMeme()
 }
 
-
 function renderText(line) {
     gCtx.beginPath()
     let { size, txt, color, align, x, y, font, stroke } = line
@@ -164,7 +142,6 @@ function renderText(line) {
     gCtx.fillText(txt, x, y)
     gCtx.strokeText(txt, x, y)
 }
-
 
 function onSelectImg(elImg, imgUrl) {
     document.getElementById("main-gallery").classList.add('hidden')
@@ -180,7 +157,7 @@ function onSelectImg(elImg, imgUrl) {
     renderMeme()
 }
 
-function onSelectSavedMeme(memeId){
+function onSelectSavedMeme(memeId) {
     document.getElementById("main-gallery").classList.add('hidden')
     document.getElementById("main-saved").classList.add('hidden')
     document.getElementById("main-editor").classList.remove('hidden')
@@ -257,6 +234,9 @@ function onSaveMeme() {
     saveMeme(savedMeme)
 }
 
+function onDownloadMeme(elLink) {
+    downloadImg(elLink)
+}
 
 function onAddLine() {
     addLine()
@@ -276,6 +256,7 @@ function onDecreaseLineSize() {
 function onChangeLineColor(color) {
     //CHANGE TEXT COLOR
     changeLineColor(color)
+
     //CHANGE COLOR SELECTOR ICON LIVE
     const elColorPicker = document.querySelector('.flaticon-color-palette')
     elColorPicker.style.color = color
